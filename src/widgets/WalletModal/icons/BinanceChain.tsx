@@ -1,6 +1,6 @@
-import React from "react";
-import Svg from "../../../components/Svg/Svg";
-import { SvgProps } from "../../../components/Svg/types";
+import React from 'react'
+import Svg from '../../../components/Svg/Svg'
+import { SvgProps } from '../../../components/Svg/types'
 
 const Icon: React.FC<SvgProps> = (props) => {
   return (
@@ -38,7 +38,7 @@ const Icon: React.FC<SvgProps> = (props) => {
       />
       <path d="M6 14.6302L8.32183 15.9883V20.6244L12.3154 22.9424V25.6585L6 21.9824V14.6302Z" fill="#F0B90B" />
     </Svg>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

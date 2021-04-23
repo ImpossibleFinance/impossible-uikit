@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { space } from "styled-system";
-import { ContainerProps } from "./types";
+import styled from 'styled-components'
+import { space } from 'styled-system'
+import { ContainerProps } from './types'
 
 const Wrapper = styled.div<ContainerProps>`
   position: relative;
@@ -13,6 +13,6 @@ const Wrapper = styled.div<ContainerProps>`
   width: 100%;
   padding-top: ${({ width, height, responsive }) => (responsive ? (height / width) * 100 : 0)}%;
   ${space}
-`;
+`
 
-export default Wrapper;
+export default Wrapper

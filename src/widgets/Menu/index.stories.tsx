@@ -1,64 +1,64 @@
-import React, { useEffect, useState } from "react";
-import noop from "lodash/noop";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import Flex from "../../components/Box/Flex";
-import Heading from "../../components/Heading/Heading";
-import Text from "../../components/Text/Text";
-import { MenuEntry } from "./components/MenuEntry";
-import Menu from "./Menu";
-import { LangType } from "./types";
-import { links } from "./config";
+import React, { useEffect, useState } from 'react'
+import noop from 'lodash/noop'
+import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import Flex from '../../components/Box/Flex'
+import Heading from '../../components/Heading/Heading'
+import Text from '../../components/Text/Text'
+import { MenuEntry } from './components/MenuEntry'
+import Menu from './Menu'
+import { LangType } from './types'
+import { links } from './config'
 
 export default {
-  title: "Widgets/Menu",
+  title: 'Widgets/Menu',
   component: Menu,
   argTypes: {},
-};
+}
 
-const langs: LangType[] = [...Array(20)].map((_, i) => ({ code: `en${i}`, language: `English${i}` }));
+const langs: LangType[] = [...Array(20)].map((_, i) => ({ code: `en${i}`, language: `English${i}` }))
 
 // This hook is used to simulate a props change, and force a re rendering
 const useProps = () => {
   const [props, setProps] = useState({
-    account: "0xbdda50183d817c3289f895a4472eb475967dc980",
+    account: '0xbdda50183d817c3289f895a4472eb475967dc980',
     login: noop,
     logout: noop,
     isDark: false,
     toggleTheme: noop,
     langs,
     setLang: noop,
-    currentLang: "EN",
+    currentLang: 'EN',
     cakePriceUsd: 0.023158668932877668,
     links,
     profile: null,
-  });
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProps({
-        account: "0xbdda50183d817c3289f895a4472eb475967dc980",
+        account: '0xbdda50183d817c3289f895a4472eb475967dc980',
         login: noop,
         logout: noop,
         isDark: false,
         toggleTheme: noop,
         langs,
         setLang: noop,
-        currentLang: "EN",
+        currentLang: 'EN',
         cakePriceUsd: 0.023158668932877668,
         links,
         profile: null,
-      });
-    }, 2000);
+      })
+    }, 2000)
     return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      clearInterval(interval)
+    }
+  }, [])
 
-  return props;
-};
+  return props
+}
 
 export const Connected: React.FC = () => {
-  const props = useProps();
+  const props = useProps()
   return (
     <BrowserRouter>
       <Menu {...props}>
@@ -82,8 +82,8 @@ export const Connected: React.FC = () => {
         </div>
       </Menu>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export const NotConnected: React.FC = () => {
   return (
@@ -113,8 +113,8 @@ export const NotConnected: React.FC = () => {
         </div>
       </Menu>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export const WithNoProfile: React.FC = () => {
   return (
@@ -131,8 +131,8 @@ export const WithNoProfile: React.FC = () => {
         cakePriceUsd={0.23158668932877668}
         links={links}
         profile={{
-          profileLink: "/profile",
-          noProfileLink: "/no-profile",
+          profileLink: '/profile',
+          noProfileLink: '/no-profile',
         }}
       >
         <div>
@@ -155,8 +155,8 @@ export const WithNoProfile: React.FC = () => {
         </div>
       </Menu>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export const WithProfile: React.FC = () => {
   return (
@@ -173,10 +173,10 @@ export const WithProfile: React.FC = () => {
         cakePriceUsd={0.23158668932877668}
         links={links}
         profile={{
-          username: "pancakeswap",
-          image: "https://pancakeswap.finance/images/nfts/blueberries-preview.png",
-          profileLink: "/profile",
-          noProfileLink: "/no-profile",
+          username: 'pancakeswap',
+          image: 'https://pancakeswap.finance/images/nfts/blueberries-preview.png',
+          profileLink: '/profile',
+          noProfileLink: '/no-profile',
         }}
       >
         <div>
@@ -199,18 +199,18 @@ export const WithProfile: React.FC = () => {
         </div>
       </Menu>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export const MenuEntryComponent: React.FC = () => {
   return (
-    <Flex justifyContent="space-between" p="16px" style={{ backgroundColor: "wheat" }}>
+    <Flex justifyContent="space-between" p="16px" style={{ backgroundColor: 'wheat' }}>
       <MenuEntry>Default</MenuEntry>
       <MenuEntry secondary>Secondary</MenuEntry>
       <MenuEntry isActive>isActive</MenuEntry>
     </Flex>
-  );
-};
+  )
+}
 
 export const WithSubmenuSelected: React.FC = () => {
   return (
@@ -227,10 +227,10 @@ export const WithSubmenuSelected: React.FC = () => {
         cakePriceUsd={0.23158668932877668}
         links={links}
         profile={{
-          username: "pancakeswap",
-          image: "https://pancakeswap.finance/images/nfts/blueberries-preview.png",
-          profileLink: "/profile",
-          noProfileLink: "/no-profile",
+          username: 'pancakeswap',
+          image: 'https://pancakeswap.finance/images/nfts/blueberries-preview.png',
+          profileLink: '/profile',
+          noProfileLink: '/no-profile',
         }}
       >
         <div>
@@ -240,5 +240,5 @@ export const WithSubmenuSelected: React.FC = () => {
         </div>
       </Menu>
     </MemoryRouter>
-  );
-};
+  )
+}

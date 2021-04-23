@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import { sample } from "lodash";
-import { alertVariants } from "../../components/Alert";
-import Button from "../../components/Button/Button";
-import ToastContainer from "./ToastContainer";
+import React, { useState } from 'react'
+import { sample } from 'lodash'
+import { alertVariants } from '../../components/Alert'
+import Button from '../../components/Button/Button'
+import ToastContainer from './ToastContainer'
 
 export default {
-  title: "Widgets/Toast",
+  title: 'Widgets/Toast',
   component: ToastContainer,
   argTypes: {},
-};
+}
 
 export const Default: React.FC = () => {
-  const [toasts, setToasts] = useState([]);
+  const [toasts, setToasts] = useState([])
 
-  const handleClick = (description = "") => {
-    const now = Date.now();
+  const handleClick = (description = '') => {
+    const now = Date.now()
     const randomToast = {
       id: `id-${now}`,
       title: `Title: ${now}`,
       description,
       type: alertVariants[sample(Object.keys(alertVariants))],
-    };
+    }
 
-    setToasts((prevToasts) => [randomToast, ...prevToasts]);
-  };
+    setToasts((prevToasts) => [randomToast, ...prevToasts])
+  }
 
   const handleRemove = (id: string) => {
-    setToasts((prevToasts) => prevToasts.filter((prevToast) => prevToast.id !== id));
-  };
+    setToasts((prevToasts) => prevToasts.filter((prevToast) => prevToast.id !== id))
+  }
 
   return (
     <div>
@@ -38,37 +38,37 @@ export const Default: React.FC = () => {
         type="button"
         variant="secondary"
         ml="8px"
-        onClick={() => handleClick("This is a description to explain more about the toast")}
+        onClick={() => handleClick('This is a description to explain more about the toast')}
       >
         Random Toast with Description
       </Button>
       <ToastContainer toasts={toasts} onRemove={handleRemove} />
     </div>
-  );
-};
+  )
+}
 
 export const WithAction: React.FC = () => {
-  const [toasts, setToasts] = useState([]);
+  const [toasts, setToasts] = useState([])
 
   const handleClick = () => {
-    const now = Date.now();
+    const now = Date.now()
     const randomToast = {
       id: `id-${now}`,
       title: `Title: ${now}`,
-      description: "A description of a toast with a call to action",
+      description: 'A description of a toast with a call to action',
       action: {
-        text: "Action Button",
-        url: "https://pancakeswap.finance",
+        text: 'Action Button',
+        url: 'https://pancakeswap.finance',
       },
       type: alertVariants[sample(Object.keys(alertVariants))],
-    };
+    }
 
-    setToasts((prevToasts) => [randomToast, ...prevToasts]);
-  };
+    setToasts((prevToasts) => [randomToast, ...prevToasts])
+  }
 
   const handleRemove = (id: string) => {
-    setToasts((prevToasts) => prevToasts.filter((prevToast) => prevToast.id !== id));
-  };
+    setToasts((prevToasts) => prevToasts.filter((prevToast) => prevToast.id !== id))
+  }
 
   return (
     <div>
@@ -77,5 +77,5 @@ export const WithAction: React.FC = () => {
       </Button>
       <ToastContainer toasts={toasts} onRemove={handleRemove} />
     </div>
-  );
-};
+  )
+}

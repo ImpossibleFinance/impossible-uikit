@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import Toggle from "./Toggle";
+import React, { useState } from 'react'
+import Toggle from './Toggle'
 
 export default {
-  title: "Components/Toggle",
+  title: 'Components/Toggle',
   component: Toggle,
-};
+}
 
 export const Default: React.FC = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
 
-  const toggle = () => setIsChecked(!isChecked);
+  const toggle = () => setIsChecked(!isChecked)
 
   return (
     <>
-      <div style={{ marginBottom: "32px" }}>
+      <div style={{ marginBottom: '32px' }}>
         <Toggle checked={isChecked} onChange={toggle} />
       </div>
       <div>
         <Toggle checked={isChecked} onChange={toggle} scale="sm" />
       </div>
     </>
-  );
-};
+  )
+}

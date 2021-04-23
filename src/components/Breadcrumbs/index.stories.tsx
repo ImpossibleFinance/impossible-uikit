@@ -1,15 +1,15 @@
-import React from "react";
-import Text from "../Text/Text";
-import Link from "../Link/Link";
-import LogoIcon from "../Svg/Icons/Logo";
-import WonIcon from "../Svg/Icons/Won";
-import BreadCrumbs from "./Breadcrumbs";
+import React from 'react'
+import Text from '../Text/Text'
+import Link from '../Link/Link'
+import LogoIcon from '../Svg/Icons/Logo'
+import WonIcon from '../Svg/Icons/Won'
+import BreadCrumbs from './Breadcrumbs'
 
 export default {
-  title: "Components/Breadcrumbs",
+  title: 'Components/Breadcrumbs',
   component: BreadCrumbs,
   argTypes: {},
-};
+}
 
 export const Default: React.FC = () => {
   return (
@@ -22,12 +22,12 @@ export const Default: React.FC = () => {
         <Text color="textDisabled">Crumb 2</Text>
       </BreadCrumbs>
       <BreadCrumbs>
-        <Text>PancakeSwap</Text>
+        <Text>Impossible Finance</Text>
         <Text>The #1 AMM and yield farm on Binance Smart Chain.</Text>
       </BreadCrumbs>
     </Text>
-  );
-};
+  )
+}
 
 export const CustomSeparator: React.FC = () => {
   return (
@@ -53,5 +53,5 @@ export const CustomSeparator: React.FC = () => {
         </BreadCrumbs>
       </Text>
     </Text>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import React from "react";
-import times from "lodash/times";
-import Flex from "../Box/Flex";
-import BackgroundImage from "./BackgroundImage";
-import Img from "./Image";
+import React from 'react'
+import times from 'lodash/times'
+import Flex from '../Box/Flex'
+import BackgroundImage from './BackgroundImage'
+import Img from './Image'
 
 export default {
-  title: "Components/Image",
+  title: 'Components/Image',
   argTypes: {},
-};
+}
 
 export const Image: React.FC = () => {
   return (
@@ -15,8 +15,8 @@ export const Image: React.FC = () => {
       <Img src="https://via.placeholder.com/800x400" width={800} height={400} alt="test" />
       <div>Image</div>
     </div>
-  );
-};
+  )
+}
 
 export const ImageResponsive: React.FC = () => {
   return (
@@ -24,8 +24,8 @@ export const ImageResponsive: React.FC = () => {
       <Img src="https://via.placeholder.com/800x400" width={800} height={400} responsive />
       <div>Image</div>
     </div>
-  );
-};
+  )
+}
 
 export const Background: React.FC = () => {
   return (
@@ -33,8 +33,8 @@ export const Background: React.FC = () => {
       <BackgroundImage src="https://via.placeholder.com/800x400" width={800} height={400} mr="16px" />
       <div>Background Image</div>
     </div>
-  );
-};
+  )
+}
 
 export const BackgroundResponsive: React.FC = () => {
   return (
@@ -42,8 +42,8 @@ export const BackgroundResponsive: React.FC = () => {
       <BackgroundImage src="https://via.placeholder.com/800x400" width={800} height={400} responsive mr="16px" />
       <div>Background Image</div>
     </div>
-  );
-};
+  )
+}
 
 export const LazyImages: React.FC = () => {
   return (
@@ -59,8 +59,8 @@ export const LazyImages: React.FC = () => {
         />
       ))}
     </Flex>
-  );
-};
+  )
+}
 
 export const LazyBackgrounds: React.FC = () => {
   return (
@@ -76,5 +76,5 @@ export const LazyBackgrounds: React.FC = () => {
         />
       ))}
     </Flex>
-  );
-};
+  )
+}

@@ -1,14 +1,14 @@
-import React from "react";
-import Text from "./Text";
+import React from 'react'
+import Text from './Text'
 
 export default {
-  title: "Components/Text",
+  title: 'Components/Text',
   component: Text,
   argTypes: {
     bold: {
-      name: "bold",
+      name: 'bold',
       table: {
-        type: { summary: "bool", detail: "Bold the text" },
+        type: { summary: 'bool', detail: 'Bold the text' },
         defaultValue: { summary: false },
       },
       control: {
@@ -16,27 +16,27 @@ export default {
       },
     },
     fontSize: {
-      name: "fontSize",
+      name: 'fontSize',
       table: {
-        type: { summary: "string", detail: "Fontsize in px or em" },
-        defaultValue: { summary: "16px" },
+        type: { summary: 'string', detail: 'Fontsize in px or em' },
+        defaultValue: { summary: '16px' },
       },
       control: {
         type: null,
       },
     },
     color: {
-      name: "color",
+      name: 'color',
       table: {
-        type: { summary: "string", detail: "Color from the theme, or CSS color" },
-        defaultValue: { summary: "theme.colors.text" },
+        type: { summary: 'string', detail: 'Color from the theme, or CSS color' },
+        defaultValue: { summary: 'theme.colors.text' },
       },
       control: {
         type: null,
       },
     },
   },
-};
+}
 
 export const Default: React.FC = () => {
   return (
@@ -52,5 +52,5 @@ export const Default: React.FC = () => {
       </Text>
       <Text textAlign="center">center</Text>
     </div>
-  );
-};
+  )
+}

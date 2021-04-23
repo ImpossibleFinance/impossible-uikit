@@ -1,6 +1,6 @@
-import React from "react";
-import Svg from "../Svg";
-import { SvgProps } from "../types";
+import React from 'react'
+import Svg from '../Svg'
+import { SvgProps } from '../types'
 
 const Icon: React.FC<SvgProps> = (props) => {
   return (
@@ -44,7 +44,7 @@ const Icon: React.FC<SvgProps> = (props) => {
         />
         <path d="M35.9629 36.0654L46.0085 38.7571L37.0016 72.3714L26.956 69.6797L35.9629 36.0654Z" fill="#7645D9" />
         <path d="M11.8535 53.0029L14.5452 42.9573L61.111 55.4346L58.4193 65.4802L11.8535 53.0029Z" fill="#7645D9" />
-        <g style={{ mixBlendMode: "multiply" }}>
+        <g style={{ mixBlendMode: 'multiply' }}>
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -63,7 +63,7 @@ const Icon: React.FC<SvgProps> = (props) => {
           fill="#0098A1"
         />
         <path d="M31.4707 20.8506L41.5163 18.1589L45.1398 31.6818L35.0942 34.3735L31.4707 20.8506Z" fill="#7645D9" />
-        <g style={{ mixBlendMode: "multiply" }}>
+        <g style={{ mixBlendMode: 'multiply' }}>
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -100,7 +100,7 @@ const Icon: React.FC<SvgProps> = (props) => {
         </clipPath>
       </defs>
     </Svg>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

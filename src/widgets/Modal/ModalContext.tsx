@@ -1,12 +1,12 @@
-import React, { createContext, useState } from "react";
-import styled from "styled-components";
-import Overlay from "../../components/Overlay/Overlay";
-import { Handler } from "./types";
+import React, { createContext, useState } from 'react'
+import styled from 'styled-components'
+import Overlay from '../../components/Overlay/Overlay'
+import { Handler } from './types'
 
 interface ModalsContext {
-  onPresent: (node: React.ReactNode, key?: string) => void;
-  onDismiss: Handler;
-  setCloseOnOverlayClick: React.Dispatch<React.SetStateAction<boolean>>;
+  onPresent: (node: React.ReactNode, key?: string) => void
+  onDismiss: Handler
+  setCloseOnOverlayClick: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ModalWrapper = styled.div`
@@ -20,34 +20,34 @@ const ModalWrapper = styled.div`
   bottom: 0;
   left: 0;
   z-index: ${({ theme }) => theme.zIndices.modal - 1};
-`;
+`
 
 export const Context = createContext<ModalsContext>({
   onPresent: () => null,
   onDismiss: () => null,
   setCloseOnOverlayClick: () => true,
-});
+})
 
 const ModalProvider: React.FC = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalNode, setModalNode] = useState<React.ReactNode>();
-  const [closeOnOverlayClick, setCloseOnOverlayClick] = useState(true);
+  const [isOpen, setIsOpen] = useState(false)
+  const [modalNode, setModalNode] = useState<React.ReactNode>()
+  const [closeOnOverlayClick, setCloseOnOverlayClick] = useState(true)
 
   const handlePresent = (node: React.ReactNode) => {
-    setModalNode(node);
-    setIsOpen(true);
-  };
+    setModalNode(node)
+    setIsOpen(true)
+  }
 
   const handleDismiss = () => {
-    setModalNode(undefined);
-    setIsOpen(false);
-  };
+    setModalNode(undefined)
+    setIsOpen(false)
+  }
 
   const handleOverlayDismiss = () => {
     if (closeOnOverlayClick) {
-      handleDismiss();
+      handleDismiss()
     }
-  };
+  }
 
   return (
     <Context.Provider
@@ -68,7 +68,7 @@ const ModalProvider: React.FC = ({ children }) => {
       )}
       {children}
     </Context.Provider>
-  );
-};
+  )
+}
 
-export default ModalProvider;
+export default ModalProvider

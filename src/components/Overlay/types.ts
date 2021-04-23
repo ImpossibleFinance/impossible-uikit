@@ -1,4 +1,4 @@
 export type OverlayProps = {
-  show: boolean;
-  zIndex?: number;
-};
+  show: boolean
+  zIndex?: number
+}

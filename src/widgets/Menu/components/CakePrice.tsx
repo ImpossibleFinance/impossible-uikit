@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { PancakeRoundIcon } from "../../../components/Svg";
-import Text from "../../../components/Text/Text";
-import Skeleton from "../../../components/Skeleton/Skeleton";
+import React from 'react'
+import styled from 'styled-components'
+import { PancakeRoundIcon } from '../../../components/Svg'
+import Text from '../../../components/Text/Text'
+import Skeleton from '../../../components/Skeleton/Skeleton'
 
 interface Props {
-  cakePriceUsd?: number;
+  cakePriceUsd?: number
 }
 
 const PriceLink = styled.a`
@@ -19,7 +19,7 @@ const PriceLink = styled.a`
       transform: scale(1.2);
     }
   }
-`;
+`
 
 const CakePrice: React.FC<Props> = ({ cakePriceUsd }) => {
   return cakePriceUsd ? (
@@ -29,7 +29,7 @@ const CakePrice: React.FC<Props> = ({ cakePriceUsd }) => {
     </PriceLink>
   ) : (
     <Skeleton width={80} height={24} />
-  );
-};
+  )
+}
 
-export default React.memo(CakePrice);
+export default React.memo(CakePrice)

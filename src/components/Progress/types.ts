@@ -1,5 +1,5 @@
 export interface ProgressProps {
-  primaryStep?: number;
-  secondaryStep?: number;
-  showProgressBunny?: boolean;
+  primaryStep?: number
+  secondaryStep?: number
+  showProgressBunny?: boolean
 }

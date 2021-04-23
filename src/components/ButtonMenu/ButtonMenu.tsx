@@ -1,7 +1,7 @@
-import React, { cloneElement, Children, ReactElement } from "react";
-import StyledButtonMenu from "./StyledButtonMenu";
-import { scales, variants } from "../Button/types";
-import { ButtonMenuProps } from "./types";
+import React, { cloneElement, Children, ReactElement } from 'react'
+import StyledButtonMenu from './StyledButtonMenu'
+import { scales, variants } from '../Button/types'
+import { ButtonMenuProps } from './types'
 
 const ButtonMenu: React.FC<ButtonMenuProps> = ({
   activeIndex = 0,
@@ -18,10 +18,10 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
           onClick: onItemClick ? () => onItemClick(index) : undefined,
           scale,
           variant,
-        });
+        })
       })}
     </StyledButtonMenu>
-  );
-};
+  )
+}
 
-export default ButtonMenu;
+export default ButtonMenu
