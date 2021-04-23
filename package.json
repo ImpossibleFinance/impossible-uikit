@@ -1,6 +1,6 @@
 {
-  "name": "@impossible-libs/uikit",
-  "version": "0.0.1",
+  "name": "@impossiblefinance/uikit",
+  "version": "0.0.2",
   "description": "Set of UI components for impossible projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,7 +8,10 @@
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/ImpossibleFinance/impossible-uikit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImpossibleFinance/impossible-uikit.git"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist",
@@ -75,5 +78,14 @@
     "lodash": "^4.17.20",
     "react-transition-group": "^4.4.1",
     "styled-system": "^5.1.5"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ImpossibleFinance/impossible-uikit/issues"
+  },
+  "homepage": "https://github.com/ImpossibleFinance/impossible-uikit#readme",
+  "keywords": [
+    "impossible",
+    "finance"
+  ],
+  "author": ""
 }
