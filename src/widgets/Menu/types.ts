@@ -1,4 +1,3 @@
-import BigNumber from 'bignumber.js';
 import { Login } from '../WalletModal/types'
 
 export interface LangType {
@@ -50,8 +49,8 @@ export interface PanelProps {
 export interface NavProps extends PanelProps {
   account?: string
   staxPriceUsd?: number
-  useStaxBalance?: () => BigNumber
-  useBnbBalance?: () => BigNumber
+  useStaxBalance?: () => string
+  useBnbBalance?: () => string
   login: Login
   profile?: Profile
   logout: () => void
