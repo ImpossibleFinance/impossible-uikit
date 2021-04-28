@@ -10,6 +10,10 @@
 /dist
 /storybook-static
 
+/.yalc
+yalc.lock
+package-lock.json
+
 # misc
 .DS_Store
 
