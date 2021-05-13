@@ -4,6 +4,7 @@ import CheckmarkCircleIcon from '../Svg/Icons/CheckmarkCircle'
 import ErrorIcon from '../Svg/Icons/Error'
 import BlockIcon from '../Svg/Icons/Block'
 import InfoIcon from '../Svg/Icons/Info'
+import IFIcon from '../Svg/Icons/IF'
 import { Text } from '../Text'
 import { IconButton } from '../Button'
 import { CloseIcon } from '../Svg'
@@ -18,6 +19,8 @@ interface ThemedIconLabel {
 
 const getThemeColor = ({ theme, variant = variants.INFO }: ThemedIconLabel) => {
   switch (variant) {
+    case variants.ANNOUNCEMENT:
+      return 'transparent'
     case variants.DANGER:
       return theme.colors.failure
     case variants.WARNING:
@@ -38,6 +41,8 @@ const getIcon = (variant: AlertProps['variant'] = variants.INFO) => {
       return ErrorIcon
     case variants.SUCCESS:
       return CheckmarkCircleIcon
+    case variants.ANNOUNCEMENT:
+      return IFIcon
     case variants.INFO:
     default:
       return InfoIcon
@@ -67,23 +72,26 @@ const CloseHandler = styled.div`
   top: 8px;
 `
 
-const StyledAlert = styled(Flex)`
+const StyledAlert = styled(Flex)<{ toastBackground?: string }>`
   position: relative;
   background-color: ${({ theme }) => theme.alert.background};
+  background: ${({ toastBackground }) => toastBackground};
+  background-size: cover;
+  background-position: center;
   border-radius: 16px;
   box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `
 
-const Alert: React.FC<AlertProps> = ({ title, children, variant, onClick }) => {
+const Alert: React.FC<AlertProps> = ({ title, children, variant, onClick, toastBackground }) => {
   const Icon = getIcon(variant)
 
   return (
-    <StyledAlert>
+    <StyledAlert toastBackground={toastBackground}>
       <IconLabel variant={variant} hasDescription={!!children}>
         <Icon color="currentColor" width="24px" />
       </IconLabel>
       <Details hasHandler={!!onClick}>
-        <Text bold>{title}</Text>
+        {typeof title === 'string' ? <Text bold>{title}</Text> : title}
         {typeof children === 'string' ? <Text as="p">{children}</Text> : children}
       </Details>
       {onClick && (

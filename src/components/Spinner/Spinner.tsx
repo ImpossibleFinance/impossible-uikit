@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+// @ts-ignore
 import { Player } from '@lottiefiles/react-lottie-player'
 import Loading from './loading.json'
 import PanIcon from './PanIcon'
