@@ -57,11 +57,11 @@ const IconLabel = styled.div<ThemedIconLabel>`
 `
 
 const withHandlerSpacing = 32 + 12 + 8 // button size + inner spacing + handler position
-const Details = styled.div<{ hasHandler: boolean }>`
+const Details = styled.div<{ hasHandler: boolean, variant?: string }>`
   flex: 1;
   padding-bottom: 12px;
-  padding-left: 12px;
-  padding-right: ${({ hasHandler }) => (hasHandler ? `${withHandlerSpacing}px` : '12px')};
+  padding-left: ${({ variant }) => (variant === variants.ANNOUNCEMENT ? `0` : '12px')};
+  padding-right: ${({ hasHandler, variant }) => (hasHandler ? `${variant === variants.ANNOUNCEMENT ? withHandlerSpacing - 12 : withHandlerSpacing}px` : '12px')};
   padding-top: 12px;
 `
 
@@ -90,7 +90,7 @@ const Alert: React.FC<AlertProps> = ({ title, children, variant, onClick, toastB
       <IconLabel variant={variant} hasDescription={!!children}>
         <Icon color="currentColor" width="24px" />
       </IconLabel>
-      <Details hasHandler={!!onClick}>
+      <Details hasHandler={!!onClick} variant={variant}>
         {typeof title === 'string' ? <Text bold>{title}</Text> : title}
         {typeof children === 'string' ? <Text as="p">{children}</Text> : children}
       </Details>

@@ -22,7 +22,7 @@ const StyledToast = styled.div`
   width: 100%;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    max-width: 400px;
+    max-width: 380px;
   }
 `
 
