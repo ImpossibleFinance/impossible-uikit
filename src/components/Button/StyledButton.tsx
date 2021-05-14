@@ -66,6 +66,7 @@ const StyledButton = styled.button<BaseButtonProps>`
     opacity: 0.85;
   }
 
+  text-decoration: none;
   ${getDisabledStyles}
   ${variant({
     prop: 'scale',
@@ -76,6 +77,8 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
+  padding: 0;
+
 `
 
 export default StyledButton

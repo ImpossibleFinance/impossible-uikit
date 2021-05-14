@@ -50,7 +50,7 @@ export const styleVariants = {
   },
   [variants.TEXT]: {
     backgroundColor: 'transparent',
-    color: 'primary',
+    color: 'text',
     boxShadow: 'none',
   },
 }

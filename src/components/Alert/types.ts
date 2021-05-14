@@ -9,13 +9,16 @@ export const variants = {
   DANGER: 'danger',
   SUCCESS: 'success',
   WARNING: 'warning',
+  ANNOUNCEMENT: 'announcement',
 } as const
 
 export type Variants = typeof variants[keyof typeof variants]
 
 export interface AlertProps {
   variant?: Variants
-  title: string
+  title: string | ReactNode
   children?: ReactNode
   onClick?: (evt: MouseEvent<HTMLButtonElement>) => void
+  toastBackground?: string
+  alertBackground?: string
 }

@@ -11,6 +11,7 @@ const alertTypeMap = {
   [types.SUCCESS]: alertVariants.SUCCESS,
   [types.DANGER]: alertVariants.DANGER,
   [types.WARNING]: alertVariants.WARNING,
+  [types.ANNOUNCEMENT]: alertVariants.ANNOUNCEMENT,
 }
 
 const StyledToast = styled.div`
@@ -21,7 +22,7 @@ const StyledToast = styled.div`
   width: 100%;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    max-width: 400px;
+    max-width: 380px;
   }
 `
 
@@ -29,8 +30,7 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
   const timer = useRef<number>()
   const ref = useRef(null)
   const removeHandler = useRef(onRemove)
-  const { id, title, description, type, action } = toast
-
+  const { id, title, description, type, action, toastBackground, alertBackground, alwaysShow } = toast
   const handleRemove = useCallback(() => removeHandler.current(id), [id, removeHandler])
 
   const handleMouseEnter = () => {
@@ -42,19 +42,22 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
       clearTimeout(timer.current)
     }
 
-    timer.current = window.setTimeout(() => {
-      handleRemove()
-    }, ttl)
+    if (!alwaysShow) {
+      timer.current = window.setTimeout(() => {
+        handleRemove()
+      }, ttl)
+    }
   }
 
   useEffect(() => {
     if (timer.current) {
       clearTimeout(timer.current)
     }
-
-    timer.current = window.setTimeout(() => {
-      handleRemove()
-    }, ttl)
+    if (!alwaysShow) {
+      timer.current = window.setTimeout(() => {
+        handleRemove()
+      }, ttl)  
+    }
 
     return () => {
       clearTimeout(timer.current)
@@ -64,16 +67,20 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
   return (
     <CSSTransition nodeRef={ref} timeout={250} style={style} {...props}>
       <StyledToast ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <Alert title={title} variant={alertTypeMap[type]} onClick={handleRemove}>
-          {action ? (
-            <>
-              <Text as="p" mb="8px">
-                {description}
-              </Text>
-              <ToastAction action={action} />
-            </>
-          ) : (
-            description
+        <Alert 
+          title={title}
+          variant={alertTypeMap[type]}
+          onClick={handleRemove}
+          toastBackground={toastBackground} 
+          alertBackground={alertBackground}
+        >
+          {description && (
+            <Text as="p" mb="8px">
+              {description}
+            </Text>
+          )}
+          {action && (
+            <ToastAction action={action} onClick={handleRemove} />
           )}
         </Alert>
       </StyledToast>

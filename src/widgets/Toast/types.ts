@@ -3,6 +3,7 @@ export const types = {
   DANGER: 'danger',
   WARNING: 'warning',
   INFO: 'info',
+  ANNOUNCEMENT: 'announcement',
 }
 
 export type Types = typeof types[keyof typeof types]
@@ -18,6 +19,10 @@ export interface Toast {
   title: string
   description?: string
   action?: ToastAction
+  alertBackground?: string
+  toastBackground?: string
+  alwaysShow?: boolean
+  icon?: string
 }
 
 export interface ToastContainerProps {
