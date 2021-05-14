@@ -8,6 +8,7 @@ import UserBlock from "./components/UserBlock";
 import MobileUserBlock from "./components/MobileUserBlock";
 import { NavProps } from "./types";
 import Nav from "./Nav";
+import SidebarMenu from "./SidebarMenu";
 
 const Wrapper = styled.div`
   position: relative;
@@ -68,11 +69,12 @@ const HeaderItemContainer = styled.div`
   }
 `;
 
-const StaxPrice = styled.div`
+const StaxPrice = styled.div<{ isSidebar?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: ${({ isSidebar }) => (isSidebar ? 'left' : 'center')};
+  margin-bottom: ${({ isSidebar }) => (isSidebar ? '16px' : '0')};
   margin-right: 0;
   padding: 12px 12px 0 0;
   span {
@@ -86,6 +88,35 @@ const StaxPrice = styled.div`
   }
 `;
 
+const MenuWrapper = styled.div `
+  position: relative;
+  display: flex;
+`
+
+const HamburgerMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const HamburgerMenuLine = styled.div`
+  width: 16px;
+  height: 3px;
+  background-color: ${({ theme }) => theme.colors.text};
+  margin: 1.5px 0;
+`
+
+const RedDot = styled.div`
+  width: 10px;
+  height: 10px;
+  background-color: #FF0EA9;
+  border-radius: 50%;
+  border: 2px solid #F6F8F9;
+  position: absolute;
+  top: 10px;
+  right: -4px;
+`
 const Menu: React.FC<NavProps> = ({
   account,
   login,
@@ -99,6 +130,7 @@ const Menu: React.FC<NavProps> = ({
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
   const [showMenu, setShowMenu] = useState(true);
+  const [showSidebarMenu, setShowSidebarMenu] = useState(false);
   const refPrevOffset = useRef(window.pageYOffset);
   const location = useLocation();
 
@@ -132,10 +164,28 @@ const Menu: React.FC<NavProps> = ({
   }, []);
 
   // Find the home link if provided
-  const homeLink = links.find((link) => link.label === "Home");
-
+  const filteredLinks = isMobile ? links.filter(value => !value.isSidebar) : links;
+  const sidebarLinks = links.filter(value => value.isSidebar);
+  const isAnythingNew = links.some(val => val.isNew);
   return (
     <Wrapper>
+      <SidebarMenu menuVisibility={showSidebarMenu} onClose={() => setShowSidebarMenu(false)}>
+        {!!staxPriceUsd && (
+          <StaxPrice isSidebar>
+            <span>Price</span> STAX: ${staxPriceUsd.toPrecision(4)}
+          </StaxPrice>
+        )}
+        {sidebarLinks.map((value) => (
+          <Nav
+            key={value.label}
+            href={value.href}
+            text={value.label}
+            isActive={value.href ? location.pathname.includes(value.href) : false}
+            onClick={() => setShowSidebarMenu(false)}
+          />
+        ))}
+      </SidebarMenu>
+
       <StyledNav showMenu={showMenu}>
         <Flex flexDirection={isMobile ? "column" : "row"} flex={1}>
           <HeaderItemContainer>
@@ -145,7 +195,7 @@ const Menu: React.FC<NavProps> = ({
               </a>
             </ImpIcon>
             <Navigation>
-              {links.map((value) => (
+              {filteredLinks.map((value) => (
                 <Nav
                   key={value.label}
                   href={value.href}
@@ -153,10 +203,24 @@ const Menu: React.FC<NavProps> = ({
                   isActive={value.href ? location.pathname.includes(value.href) : false}
                 />
               ))}
+              {
+                isMobile && (
+                  <MenuWrapper>
+                    <HamburgerMenuWrapper onClick={() => {
+                      setShowSidebarMenu(true);
+                    }}>
+                      <HamburgerMenuLine />
+                      <HamburgerMenuLine />
+                      <HamburgerMenuLine />
+                    </HamburgerMenuWrapper>
+                    { isAnythingNew && <RedDot /> }
+                  </MenuWrapper>
+                )
+              }
             </Navigation>
           </HeaderItemContainer>
           <Flex justifyContent={isMobile ? "flex-end" : "flex-start"}>
-            {!!staxPriceUsd && (
+            {!!staxPriceUsd && !isMobile && (
               <StaxPrice>
                 <span>Price</span> STAX: ${staxPriceUsd.toPrecision(4)}
               </StaxPrice>
