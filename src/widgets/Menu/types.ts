@@ -30,6 +30,8 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
+  isSidebar?: boolean
+  isNew?: boolean
   label: string
   href?: string
   calloutClass?: string

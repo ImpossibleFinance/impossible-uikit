@@ -6,13 +6,18 @@ type NavProps = {
   href?: string;
   text: string;
   isActive?: boolean;
+  onClick?: Function;
 };
 
-const Nav: React.FC<NavProps> = ({ href, text, isActive }) => {
+const Nav: React.FC<NavProps> = ({ href, text, isActive, onClick }) => {
   return (
     <StyledNav>
       <StyledLink className={isActive ? "active" : ""}>
-        <MenuLink href={href}>{text}</MenuLink>
+        <MenuLink onClick={() => {
+          if (onClick) {
+            onClick()
+          }
+        }} href={href}>{text}</MenuLink>
       </StyledLink>
     </StyledNav>
   );
