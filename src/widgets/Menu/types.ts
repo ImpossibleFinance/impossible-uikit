@@ -31,6 +31,7 @@ export interface MenuSubEntry {
 
 export interface MenuEntry {
   isSidebar?: boolean
+  isNewTab?: boolean
   isNew?: boolean
   label: string
   href?: string

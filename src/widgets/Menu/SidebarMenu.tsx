@@ -24,7 +24,7 @@ const FlyoutMenu = styled.div`
   transition: transform .3s
               cubic-bezier(0, .52, 0, 1);
   overflow: scroll;
-  z-index: 1000;
+  z-index: 1001;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.33);
   &.show {
     transform: translate3d(0vw, 0, 0);

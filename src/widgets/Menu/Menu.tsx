@@ -181,6 +181,7 @@ const Menu: React.FC<NavProps> = ({
             href={value.href}
             text={value.label}
             isActive={value.href ? location.pathname.includes(value.href) : false}
+            isNewTab={value.isNewTab}
             onClick={() => setShowSidebarMenu(false)}
           />
         ))}

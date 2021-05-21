@@ -6,10 +6,11 @@ type NavProps = {
   href?: string;
   text: string;
   isActive?: boolean;
+  isNewTab?: boolean;
   onClick?: Function;
 };
 
-const Nav: React.FC<NavProps> = ({ href, text, isActive, onClick }) => {
+const Nav: React.FC<NavProps> = ({ href, text, isActive, onClick, isNewTab }) => {
   return (
     <StyledNav>
       <StyledLink className={isActive ? "active" : ""}>
@@ -17,7 +18,7 @@ const Nav: React.FC<NavProps> = ({ href, text, isActive, onClick }) => {
           if (onClick) {
             onClick()
           }
-        }} href={href}>{text}</MenuLink>
+        }} href={href} target={isNewTab ? "_blank" : ''} rel={isNewTab ? "noopener noreferrer" : ''}>{text}</MenuLink>
       </StyledLink>
     </StyledNav>
   );
