@@ -53,4 +53,10 @@ export const styleVariants = {
     color: 'text',
     boxShadow: 'none',
   },
+  [variants.TOAST_ACTION]: {
+    backgroundColor: 'transparent',
+    color: 'text',
+    boxShadow: 'none',
+    padding: 0,
+  },
 }

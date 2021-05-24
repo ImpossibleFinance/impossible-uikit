@@ -77,7 +77,6 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
-  padding: 0;
 
 `
 
