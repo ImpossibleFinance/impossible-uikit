@@ -21,7 +21,7 @@ const ToastAction: React.FC<ToastActionProps> = ({ action, onClick }) => {
         }} 
         as="a" 
         scale="sm" 
-        href={action.url} {...getExternalLinkProps()} variant={'text'}>
+        href={action.url} {...getExternalLinkProps()} variant={'toastAction'}>
         {action.text} <ArrowForwardIcon color="text" />
       </Button>
     )
@@ -37,7 +37,7 @@ const ToastAction: React.FC<ToastActionProps> = ({ action, onClick }) => {
       as={Link} 
       scale="sm" 
       to={action.url} 
-      variant={'text'}>
+      variant={'toastAction'}>
       {action.text} <ArrowForwardIcon color="text" />
     </Button>
   )
