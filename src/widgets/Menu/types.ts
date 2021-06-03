@@ -51,8 +51,8 @@ export interface PanelProps {
 
 export interface NavProps extends PanelProps {
   account?: string
-  staxPriceUsd?: number
-  useStaxBalance?: () => string
+  ifPriceUsd?: number
+  useIFBalance?: () => string
   useBnbBalance?: () => string
   login: Login
   profile?: Profile

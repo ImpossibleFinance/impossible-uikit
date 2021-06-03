@@ -69,12 +69,12 @@ const HeaderItemContainer = styled.div`
   }
 `;
 
-const StaxPrice = styled.div<{ isSidebar?: boolean }>`
+const IFPrice = styled.div<{ isSidebar?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: ${({ isSidebar }) => (isSidebar ? 'left' : 'center')};
-  margin-bottom: ${({ isSidebar }) => (isSidebar ? '16px' : '0')};
+  justify-content: ${({ isSidebar }) => (isSidebar ? "left" : "center")};
+  margin-bottom: ${({ isSidebar }) => (isSidebar ? "16px" : "0")};
   margin-right: 0;
   padding: 12px 12px 0 0;
   span {
@@ -88,35 +88,35 @@ const StaxPrice = styled.div<{ isSidebar?: boolean }>`
   }
 `;
 
-const MenuWrapper = styled.div `
+const MenuWrapper = styled.div`
   position: relative;
   display: flex;
-`
+`;
 
 const HamburgerMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const HamburgerMenuLine = styled.div`
   width: 16px;
   height: 3px;
   background-color: ${({ theme }) => theme.colors.text};
   margin: 1.5px 0;
-`
+`;
 
 const RedDot = styled.div`
   width: 10px;
   height: 10px;
-  background-color: #FF0EA9;
+  background-color: #ff0ea9;
   border-radius: 50%;
-  border: 2px solid #F6F8F9;
+  border: 2px solid #f6f8f9;
   position: absolute;
   top: 10px;
   right: -4px;
-`
+`;
 const Menu: React.FC<NavProps> = ({
   account,
   login,
@@ -124,8 +124,8 @@ const Menu: React.FC<NavProps> = ({
   links,
   children,
   useBnbBalance,
-  useStaxBalance,
-  staxPriceUsd,
+  useIFBalance,
+  ifPriceUsd,
 }) => {
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
@@ -164,16 +164,16 @@ const Menu: React.FC<NavProps> = ({
   }, []);
 
   // Find the home link if provided
-  const filteredLinks = isMobile ? links.filter(value => !value.isSidebar) : links;
-  const sidebarLinks = links.filter(value => value.isSidebar);
-  const isAnythingNew = links.some(val => val.isNew);
+  const filteredLinks = isMobile ? links.filter((value) => !value.isSidebar) : links;
+  const sidebarLinks = links.filter((value) => value.isSidebar);
+  const isAnythingNew = links.some((val) => val.isNew);
   return (
     <Wrapper>
       <SidebarMenu menuVisibility={showSidebarMenu} onClose={() => setShowSidebarMenu(false)}>
-        {!!staxPriceUsd && (
-          <StaxPrice isSidebar>
-            <span>Price</span> STAX: ${staxPriceUsd.toPrecision(4)}
-          </StaxPrice>
+        {!!ifPriceUsd && (
+          <IFPrice isSidebar>
+            <span>Price</span> IF: ${ifPriceUsd.toPrecision(4)}
+          </IFPrice>
         )}
         {sidebarLinks.map((value) => (
           <Nav
@@ -204,34 +204,34 @@ const Menu: React.FC<NavProps> = ({
                   isActive={value.href ? location.pathname.includes(value.href) : false}
                 />
               ))}
-              {
-                isMobile && (
-                  <MenuWrapper>
-                    <HamburgerMenuWrapper onClick={() => {
+              {isMobile && (
+                <MenuWrapper>
+                  <HamburgerMenuWrapper
+                    onClick={() => {
                       setShowSidebarMenu(true);
-                    }}>
-                      <HamburgerMenuLine />
-                      <HamburgerMenuLine />
-                      <HamburgerMenuLine />
-                    </HamburgerMenuWrapper>
-                    { isAnythingNew && <RedDot /> }
-                  </MenuWrapper>
-                )
-              }
+                    }}
+                  >
+                    <HamburgerMenuLine />
+                    <HamburgerMenuLine />
+                    <HamburgerMenuLine />
+                  </HamburgerMenuWrapper>
+                  {isAnythingNew && <RedDot />}
+                </MenuWrapper>
+              )}
             </Navigation>
           </HeaderItemContainer>
           <Flex justifyContent={isMobile ? "flex-end" : "flex-start"}>
-            {!!staxPriceUsd && !isMobile && (
-              <StaxPrice>
-                <span>Price</span> STAX: ${staxPriceUsd.toPrecision(4)}
-              </StaxPrice>
+            {!!ifPriceUsd && !isMobile && (
+              <IFPrice>
+                <span>Price</span> IF: ${ifPriceUsd.toPrecision(4)}
+              </IFPrice>
             )}
             {!isMobile && (
               <UserBlock
                 account={account}
                 login={login}
                 logout={logout}
-                useStaxBalance={useStaxBalance}
+                useIFBalance={useIFBalance}
                 useBnbBalance={useBnbBalance}
               />
             )}
@@ -243,7 +243,7 @@ const Menu: React.FC<NavProps> = ({
           account={account}
           login={login}
           logout={logout}
-          useStaxBalance={useStaxBalance}
+          useIFBalance={useIFBalance}
           useBnbBalance={useBnbBalance}
         />
       )}

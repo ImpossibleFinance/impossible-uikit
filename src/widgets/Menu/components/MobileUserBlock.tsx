@@ -8,7 +8,7 @@ import { Login } from "../../WalletModal/types";
 
 interface Props {
   account?: string;
-  useStaxBalance?: () => string;
+  useIFBalance?: () => string;
   useBnbBalance?: () => string;
   login: Login;
   logout: () => void;
@@ -51,10 +51,10 @@ const WalletIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useStaxBalance, useBnbBalance, login, logout }) => {
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
-  const staxBalance = useStaxBalance && useStaxBalance();
+  const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();
   const [showBalance, setShowBalance] = useState(false);
   const showBalanceClick = useCallback(() => {
@@ -80,8 +80,8 @@ const MobileUserBlock: React.FC<Props> = ({ account, useStaxBalance, useBnbBalan
           </Flex>
           {showBalance && (
             <Flex mt="12px" flexDirection="row" justifyContent="space-between" alignItems="center">
-              <Label>STAX</Label>
-              <Label>{staxBalance}</Label>
+              <Label>IF</Label>
+              <Label>{ifBalance}</Label>
             </Flex>
           )}
           {showBalance && (

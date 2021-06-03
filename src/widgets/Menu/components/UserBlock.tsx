@@ -8,7 +8,7 @@ import Wallet from "../../../components/Svg/Icons/Wallet";
 
 interface Props {
   account?: string;
-  useStaxBalance?: () => string;
+  useIFBalance?: () => string;
   useBnbBalance?: () => string;
   login: Login;
   logout: () => void;
@@ -19,7 +19,7 @@ const UserBlockWrapper = styled.div`
   flex-direction: row;
 `;
 
-const StaxBalance = styled.div`
+const IFBalance = styled.div`
   background: linear-gradient(249.75deg, #050a5a -14.92%, #0617bf 90.68%);
   padding: 12px 15px 9px;
   border-radius: 19px;
@@ -54,19 +54,19 @@ const WalletIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useStaxBalance, login, logout }) => {
+const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, login, logout }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
-  const staxBalance = useStaxBalance && useStaxBalance();
+  const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();
   return (
     <div>
       {account ? (
         <UserBlockWrapper>
-          {staxBalance ? (
-            <StaxBalance>
-              <b>{staxBalance}</b> STAX
-            </StaxBalance>
+          {ifBalance ? (
+            <IFBalance>
+              <b>{ifBalance}</b> IF
+            </IFBalance>
           ) : null}
           <AccountWrapper>
             {bnbBalance ? (
