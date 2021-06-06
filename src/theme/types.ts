@@ -60,6 +60,8 @@ export type Colors = {
   // Brand colors
   binance: string
   impossible: string
+
+  lightGray: string
 }
 
 export type ZIndices = {

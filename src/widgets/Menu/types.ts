@@ -19,6 +19,7 @@ export interface PushedProps {
 }
 
 export interface NavTheme {
+  impossible?: string
   background: string
   hover: string
 }
@@ -30,6 +31,8 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
+  icon: any;
+  items: any;
   isSidebar?: boolean
   isNewTab?: boolean
   isNew?: boolean
