@@ -14,6 +14,7 @@ export const brandColors = {
   binance: '#F0B90B',
   impossible: '#050A5A',
   lightGray: '#D0D5D6',
+  lightGreen: '#00FFB9',
 }
 
 export const lightColors: Colors = {

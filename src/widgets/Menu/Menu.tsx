@@ -7,9 +7,7 @@ import { useMatchBreakpoints } from "../../hooks";
 import UserBlock from "./components/UserBlock";
 import MobileUserBlock from "./components/MobileUserBlock";
 import { NavProps } from "./types";
-import Nav from "./Nav";
 import Logo from "./components/Logo";
-import SidebarMenu from "./SidebarMenu";
 import Panel from "./components/Panel";
 import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 import Overlay from "../../components/Overlay/Overlay";
@@ -19,22 +17,6 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-// const StyledNav = styled.nav<{ showMenu: boolean }>`
-//   left: 0;
-//   transition: top 0.2s;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   background-color: ${({ theme }) => theme.nav.background};
-//   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
-//   z-index: 20;
-//   transform: translate3d(0, 0, 0);
-//   padding: 24px 16px;
-//   ${({ theme }) => theme.mediaQueries.sm} {
-//     padding: 15px 120px;
-//   }
-// `;
 
 const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
@@ -71,31 +53,6 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   height: 100vh;
 `;
 
-const ImpIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  img {
-    height: 30px;
-  }
-`;
-
-const Navigation = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: space-between;
-  margin-left: 56px;
-`;
-
-const HeaderItemContainer = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
-  }
-`;
-
 const IFPrice = styled.div<{ isSidebar?: boolean }>`
   display: flex;
   flex-direction: row;
@@ -113,36 +70,6 @@ const IFPrice = styled.div<{ isSidebar?: boolean }>`
     padding: 0;
     margin-right: 28px;
   }
-`;
-
-const MenuWrapper = styled.div`
-  position: relative;
-  display: flex;
-`;
-
-const HamburgerMenuWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const HamburgerMenuLine = styled.div`
-  width: 16px;
-  height: 3px;
-  background-color: ${({ theme }) => theme.colors.text};
-  margin: 1.5px 0;
-`;
-
-const RedDot = styled.div`
-  width: 10px;
-  height: 10px;
-  background-color: #ff0ea9;
-  border-radius: 50%;
-  border: 2px solid #f6f8f9;
-  position: absolute;
-  top: 10px;
-  right: -4px;
 `;
 
 const MobileOnlyOverlay = styled(Overlay)`
@@ -202,8 +129,6 @@ const Menu: React.FC<NavProps> = ({
     };
   }, []);
 
-  console.log(isPushed, showMenu, isMobile, 'berkaca')
-
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
@@ -214,13 +139,6 @@ const Menu: React.FC<NavProps> = ({
           href={process.env.REACT_APP_LANDING_DOMAIN || ''}
         />
         <Flex flexDirection={isMobile ? "column" : "row"} flex={5} justifyContent={"flex-end"}>
-          {/* <HeaderItemContainer>
-            <ImpIcon>
-              <a href={process.env.REACT_APP_LANDING_DOMAIN}>
-                <img src={isMobile ? "images/LogoM.svg" : "/images/Logo.svg"} alt="logo" />
-              </a>
-            </ImpIcon>
-          </HeaderItemContainer> */}
           <Flex justifyContent={"flex-end"}>
             {!!ifPriceUsd && (
               <IFPrice>

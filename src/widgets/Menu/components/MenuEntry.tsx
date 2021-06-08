@@ -18,8 +18,8 @@ const rainbowAnimation = keyframes`
   }
 `
 
-const LinkLabel = styled.div<{ isPushed: boolean }>`
-  color: ${({ isPushed, theme }) => (isPushed ? theme.colors.lightGray : 'transparent')};
+const LinkLabel = styled.div<{ isPushed: boolean, isActive: boolean }>`
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
   transition: color 0.4s;
   flex-grow: 1;
 `
@@ -31,8 +31,7 @@ const MenuEntry = styled.div<Props>`
   height: ${MENU_ENTRY_HEIGHT}px;
   padding: ${({ secondary }) => (secondary ? '0 32px' : '0 16px')};
   font-size: ${({ secondary }) => (secondary ? '14px' : '16px')};
-  background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : 'transparent')};
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
   box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.primary}` : 'none')};
 
   a {
@@ -40,15 +39,14 @@ const MenuEntry = styled.div<Props>`
     align-items: center;
     width: 100%;
     height: 100%;
+    text-decoration: none;
+    color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
   }
 
   svg {
-    fill: ${({ theme }) => theme.colors.lightGray};
+    fill: none;
   }
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.tertiary};
-  }
 
   // Safari fix
   flex-shrink: 0;
@@ -66,6 +64,6 @@ MenuEntry.defaultProps = {
   role: 'button',
 }
 
-const LinkLabelMemo = React.memo(LinkLabel, (prev, next) => prev.isPushed === next.isPushed)
+const LinkLabelMemo = React.memo(LinkLabel, (prev, next) => prev.isPushed === next.isPushed && prev.isActive === next.isActive)
 
 export { MenuEntry, LinkLabelMemo as LinkLabel }

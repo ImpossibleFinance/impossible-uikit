@@ -55,8 +55,8 @@ const Accordion: React.FC<Props> = ({
     <Container>
       <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
         {icon}
-        <LinkLabel isPushed={isPushed}>{label}</LinkLabel>
-        {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+        <LinkLabel isPushed={isPushed} isActive={isActive}>{label}</LinkLabel>
+        {isOpen ? <ArrowDropUpIcon fill={isActive ? "#00FFB9" : "#D0D5D6"} color={isActive ? "#00FFB9" : "#D0D5D6"} /> : <ArrowDropDownIcon fill={isActive ? "#00FFB9" : "#D0D5D6"} color={isActive ? "#00FFB9" : "#D0D5D6"} />}
       </MenuEntry>
       <AccordionContent
         isOpen={isOpen}
@@ -69,4 +69,4 @@ const Accordion: React.FC<Props> = ({
   )
 }
 
-export default React.memo(Accordion, (prev, next) => prev.isPushed === next.isPushed)
+export default React.memo(Accordion, (prev, next) => prev.isPushed === next.isPushed && prev.isActive === next.isActive)

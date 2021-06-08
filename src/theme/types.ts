@@ -62,6 +62,7 @@ export type Colors = {
   impossible: string
 
   lightGray: string
+  lightGreen: string
 }
 
 export type ZIndices = {
