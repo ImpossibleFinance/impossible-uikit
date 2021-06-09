@@ -23,6 +23,7 @@ export interface Toast {
   toastBackground?: string
   alwaysShow?: boolean
   icon?: string
+  onClick?: Function
 }
 
 export interface ToastContainerProps {

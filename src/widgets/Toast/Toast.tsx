@@ -30,7 +30,7 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
   const timer = useRef<number>()
   const ref = useRef(null)
   const removeHandler = useRef(onRemove)
-  const { id, title, description, type, action, toastBackground, alertBackground, alwaysShow } = toast
+  const { id, title, description, type, action, toastBackground, alertBackground, alwaysShow, onClick } = toast
   const handleRemove = useCallback(() => removeHandler.current(id), [id, removeHandler])
 
   const handleMouseEnter = () => {
@@ -70,7 +70,12 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
         <Alert 
           title={title}
           variant={alertTypeMap[type]}
-          onClick={handleRemove}
+          onClick={() => {
+            handleRemove();
+            if (onClick) {
+              onClick();
+            }
+          }}
           toastBackground={toastBackground} 
           alertBackground={alertBackground}
         >
@@ -80,7 +85,13 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
             </Text>
           )}
           {action && (
-            <ToastAction action={action} onClick={handleRemove} />
+            <ToastAction action={action} onClick={() => {
+              handleRemove();
+              if (onClick) {
+                onClick();
+              }
+            }}
+            />
           )}
         </Alert>
       </StyledToast>
