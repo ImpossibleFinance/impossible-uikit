@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { useLocation } from "react-router-dom";
 import { SvgProps } from "../../../components/Svg";
 import { Button } from "../../../components/Button";
@@ -64,6 +64,7 @@ const CloseIcon = styled.div`
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const location = useLocation();
+  const theme = useTheme();
 
   // Close the menu when a user clicks a link on mobile
   const handleClick = isMobile ? () => pushNav(false) : undefined;
@@ -87,7 +88,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           const itemsMatchIndex = entry.items.findIndex((item: { href: string; }) => item.href === location.pathname);
           const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
           const isActive = entry.items.some((item: { href: string; }) => item.href === location.pathname);
-          const iconElement = <Icon width="24px" mr="8px" stroke={isActive ? "#00FFB9" : "#D0D5D6"} />;
+          const iconElement = <Icon width="24px" mr="8px" stroke={isActive ? theme.colors.lightGreen : theme.colors.lightGray} />;
           return (
             <Accordion
               key={entry.label}
@@ -108,7 +109,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
             </Accordion>
           );
         }
-        const iconElement = <Icon width="24px" mr="8px" stroke={isMainActive ? "#00FFB9" : "#D0D5D6"} />;
+        const iconElement = <Icon width="24px" mr="8px" stroke={isMainActive ? theme.colors.lightGreen : theme.colors.lightGray} />;
         
         return (
           <MenuEntry key={entry.label} isActive={isMainActive} className={calloutClass}>

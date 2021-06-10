@@ -98,7 +98,6 @@ const Menu: React.FC<NavProps> = ({
   const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -138,8 +137,8 @@ const Menu: React.FC<NavProps> = ({
           isDark={false}
           href={process.env.REACT_APP_LANDING_DOMAIN || ''}
         />
-        <Flex flexDirection={isMobile ? "column" : "row"} flex={5} justifyContent={"flex-end"}>
-          <Flex justifyContent={"flex-end"}>
+        <Flex flexDirection={isMobile ? "column" : "row"} flex={5} justifyContent="flex-end">
+          <Flex justifyContent="flex-end">
             {!!ifPriceUsd && (
               <IFPrice>
                 <span>Price</span> IF: ${ifPriceUsd.toPrecision(4)}

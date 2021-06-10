@@ -31,8 +31,8 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
-  icon: any;
-  items: any;
+  icon: string;
+  items: MenuSubEntry[];
   isSidebar?: boolean
   isNewTab?: boolean
   isNew?: boolean
