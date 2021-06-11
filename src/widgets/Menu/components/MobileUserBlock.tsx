@@ -20,6 +20,7 @@ const UserBlockWrapper = styled.div`
   width: 100%;
   background: transparent;
   padding: 20px;
+  margin-top: 80px;
 `;
 
 const WalletButton = styled(Button)`

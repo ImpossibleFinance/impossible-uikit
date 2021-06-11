@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { MENU_ENTRY_HEIGHT } from '../config'
 import { LinkLabel, MenuEntry } from './MenuEntry'
 import { PushedProps } from '../types'
@@ -41,6 +41,7 @@ const Accordion: React.FC<Props> = ({
   isActive,
 }) => {
   const [isOpen, setIsOpen] = useState(initialOpenState)
+  const theme = useTheme();
 
   const handleClick = () => {
     if (isPushed) {
@@ -55,8 +56,8 @@ const Accordion: React.FC<Props> = ({
     <Container>
       <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
         {icon}
-        <LinkLabel isPushed={isPushed}>{label}</LinkLabel>
-        {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+        <LinkLabel isPushed={isPushed} isActive={isActive}>{label}</LinkLabel>
+        {isOpen ? <ArrowDropUpIcon fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray} color={isActive ? theme.colors.lightGreen : theme.colors.lightGray} /> : <ArrowDropDownIcon fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray} color={isActive ? theme.colors.lightGreen : theme.colors.lightGray} />}
       </MenuEntry>
       <AccordionContent
         isOpen={isOpen}
@@ -69,4 +70,4 @@ const Accordion: React.FC<Props> = ({
   )
 }
 
-export default React.memo(Accordion, (prev, next) => prev.isPushed === next.isPushed)
+export default React.memo(Accordion, (prev, next) => prev.isPushed === next.isPushed && prev.isActive === next.isActive)

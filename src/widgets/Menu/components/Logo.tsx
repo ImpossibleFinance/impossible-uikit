@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { LogoIcon } from '../../../components/Svg'
 import Flex from '../../../components/Box/Flex'
-import { LogoIcon as LogoWithText } from '../icons'
+import { HamburgerIcon, HamburgerCloseIcon } from "../icons";
+import MenuButton from "./MenuButton";
 
 interface Props {
   isPushed: boolean
@@ -28,6 +29,8 @@ const StyledLink = styled(Link)`
       display: block;
     }
   }
+  flex: 1;
+  justify-content: flex-end;
 `
 
 const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
@@ -35,12 +38,18 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
   const innerLogo = (
     <>
       <LogoIcon className="mobile-icon" />
-      <LogoWithText className="desktop-icon" isDark={isDark} />
     </>
   )
 
   return (
-    <Flex>
+    <Flex flex={6}>
+      <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
+        {isPushed ? (
+          <HamburgerCloseIcon width="24px" color="textSubtle" />
+        ) : (
+          <HamburgerIcon width="24px" color="textSubtle" />
+        )}
+      </MenuButton>
       {isAbsoluteUrl ? (
         <StyledLink as="a" href={href} aria-label="Pancake home page">
           {innerLogo}
