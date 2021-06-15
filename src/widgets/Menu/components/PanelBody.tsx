@@ -80,15 +80,16 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
         </LogoContainer>
       }
       {links.map((entry) => {
-        const Icon = Icons[entry.icon];
         const isMainActive = entry.href === location.pathname;
+        const Icon = isMainActive ? Icons[entry.icon + 'Active'] : Icons[entry.icon];
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
 
         if (entry.items) {
           const itemsMatchIndex = entry.items.findIndex((item: { href: string; }) => item.href === location.pathname);
           const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
           const isActive = entry.items.some((item: { href: string; }) => item.href === location.pathname);
-          const iconElement = <Icon width="24px" mr="8px" stroke={isActive ? theme.colors.lightGreen : theme.colors.lightGray} />;
+          const SubMenuIcon = isActive ? Icons[entry.icon + 'Active'] : Icons[entry.icon];
+          const iconElement = <SubMenuIcon width="24px" mr="8px" />;
           return (
             <Accordion
               key={entry.label}
@@ -109,7 +110,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
             </Accordion>
           );
         }
-        const iconElement = <Icon width="24px" mr="8px" stroke={isMainActive ? theme.colors.lightGreen : theme.colors.lightGray} />;
+        const iconElement = <Icon width="24px" mr="8px" />;
         
         return (
           <MenuEntry key={entry.label} isActive={isMainActive} className={calloutClass}>
