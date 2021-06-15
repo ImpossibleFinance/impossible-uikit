@@ -43,11 +43,6 @@ const MenuEntry = styled.div<Props>`
     color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
   }
 
-  svg {
-    fill: none;
-  }
-
-
   // Safari fix
   flex-shrink: 0;
 
