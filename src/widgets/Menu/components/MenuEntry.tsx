@@ -32,7 +32,7 @@ const MenuEntry = styled.div<Props>`
   padding: ${({ secondary }) => (secondary ? '0 32px' : '0 16px')};
   font-size: ${({ secondary }) => (secondary ? '14px' : '16px')};
   color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
-  box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.primary}` : 'none')};
+  box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.lightGreen}` : 'none')};
 
   a {
     display: flex;
