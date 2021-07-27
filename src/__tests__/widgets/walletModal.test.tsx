@@ -435,7 +435,7 @@ it("renders ConnectModal correctly", () => {
           <a
             class="sc-bdfBwQ sc-gsTCUz eiaRqE djpNeP sc-crrsfI dwTIxE"
             color="primary"
-            href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"
+            href="https://impossible.freshdesk.com/en/support/solutions/folders/80000447667"
             rel="noreferrer noopener"
             target="_blank"
           >
