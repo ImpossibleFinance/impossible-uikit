@@ -27,7 +27,7 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss, mb }) => 
       id={`wallet-connect-${title.toLocaleLowerCase()}`}
     >
       <Text bold color="primary" mr="16px">
-        {title==='Metamask' ? title + ' (Recommended)' : title}
+        {title}
       </Text>
       <Icon width="32px" />
     </Button>
