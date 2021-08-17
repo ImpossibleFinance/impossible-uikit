@@ -1,6 +1,6 @@
 {
   "name": "@impossiblefinance/uikit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Set of UI components for impossible projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

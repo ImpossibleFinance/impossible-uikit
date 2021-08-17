@@ -15,6 +15,9 @@
     "noEmit": false,
     "jsx": "react"
   },
+  "files": [
+    "src/global.d.ts"
+  ],
   "include": ["src"],
   "exclude": ["node_modules", "src/**/*.stories.tsx", "src/__tests__/**/*"],
   "externals": {

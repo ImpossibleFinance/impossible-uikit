@@ -19,6 +19,9 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss, mb }) => 
       variant="tertiary"
       onClick={() => {
         login(walletConfig.connectorId)
+        if (window.fathom) {
+          window.fathom.trackGoal(walletConfig.fathomID, 0);
+        }
         window.localStorage.setItem(connectorLocalStorageKey, walletConfig.connectorId)
         onDismiss()
       }}
