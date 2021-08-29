@@ -69,7 +69,7 @@ const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIc
         <UserBlockWrapper>
           {ifBalance ? (
             <IFBalance>
-              <img width="20px" alt="IFIcon" src={ifIcon} /><b style={{ marginLeft: "4px" }}>{ifBalance}</b>
+              {ifIcon ? <img width="20px" alt="IFIcon" src={ifIcon} /> : 'IF'}<b style={{ marginLeft: "4px" }}>{ifBalance}</b>
             </IFBalance>
           ) : null}
           <AccountWrapper>
