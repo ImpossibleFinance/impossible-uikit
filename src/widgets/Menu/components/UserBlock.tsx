@@ -12,6 +12,7 @@ interface Props {
   useBnbBalance?: () => string;
   login: Login;
   logout: () => void;
+  ifIcon?: string;
 }
 
 const UserBlockWrapper = styled.div`
@@ -25,6 +26,9 @@ const IFBalance = styled.div`
   border-radius: 19px;
   color: ${({ theme }) => theme.colors.invertedContrast};
   margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const AccountWrapper = styled.div`
@@ -54,7 +58,7 @@ const WalletIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, login, logout }) => {
+const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const ifBalance = useIFBalance && useIFBalance();
@@ -65,7 +69,7 @@ const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, logi
         <UserBlockWrapper>
           {ifBalance ? (
             <IFBalance>
-              <b>{ifBalance}</b> IF
+              {ifIcon ? <img width="20px" alt="IFIcon" src={ifIcon} /> : 'IF'}<b style={{ marginLeft: "4px" }}>{ifBalance}</b>
             </IFBalance>
           ) : null}
           <AccountWrapper>

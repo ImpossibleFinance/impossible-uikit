@@ -86,6 +86,7 @@ const Menu: React.FC<NavProps> = ({
   children,
   useBnbBalance,
   useIFBalance,
+  ifIcon,
   ifPriceUsd,
   toggleTheme,
   langs,
@@ -149,6 +150,7 @@ const Menu: React.FC<NavProps> = ({
                 login={login}
                 logout={logout}
                 useIFBalance={useIFBalance}
+                ifIcon={ifIcon}
                 useBnbBalance={useBnbBalance}
               />
             )}
