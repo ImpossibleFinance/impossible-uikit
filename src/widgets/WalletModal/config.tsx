@@ -4,6 +4,8 @@ import TokenPocket from './icons/TokenPocket'
 import TrustWallet from './icons/TrustWallet'
 import WalletConnect from './icons/WalletConnect'
 import BinanceChain from './icons/BinanceChain'
+import Blocto from './icons/Blocto'
+
 import { Config, ConnectorNames } from './types'
 
 const connectors: Config[] = [
@@ -12,6 +14,12 @@ const connectors: Config[] = [
     icon: Metamask,
     connectorId: ConnectorNames.Injected,
     fathomID: 'RPITS1R9',
+  },
+  {
+    title: 'Blocto',
+    icon: Blocto,
+    connectorId: ConnectorNames.Blocto,
+    fathomID: 'AXOFZIML'
   },
   {
     title: 'TrustWallet',
