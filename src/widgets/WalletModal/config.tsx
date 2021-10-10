@@ -5,6 +5,7 @@ import TrustWallet from './icons/TrustWallet'
 import WalletConnect from './icons/WalletConnect'
 import BinanceChain from './icons/BinanceChain'
 import Blocto from './icons/Blocto'
+import Coin98 from './icons/Coin98'
 
 import { Config, ConnectorNames } from './types'
 
@@ -20,6 +21,12 @@ const connectors: Config[] = [
     icon: Blocto,
     connectorId: ConnectorNames.Blocto,
     fathomID: 'AXOFZIML'
+  },
+  {
+    title: 'Coin98',
+    icon: Coin98,
+    connectorId: ConnectorNames.Injected,
+    fathomID: ''
   },
   {
     title: 'TrustWallet',
