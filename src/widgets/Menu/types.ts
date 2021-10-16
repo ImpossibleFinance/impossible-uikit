@@ -1,4 +1,4 @@
-import { Login } from '../WalletModal/types'
+import { Login, TokenBalance } from '../WalletModal/types'
 
 export interface LangType {
   code: string
@@ -61,4 +61,5 @@ export interface NavProps extends PanelProps {
   login: Login
   profile?: Profile
   logout: () => void
+  balances?: TokenBalance[]
 }

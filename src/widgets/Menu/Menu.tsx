@@ -92,6 +92,7 @@ const Menu: React.FC<NavProps> = ({
   langs,
   setLang,
   currentLang,
+  balances = [],
 }) => {
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
@@ -99,6 +100,7 @@ const Menu: React.FC<NavProps> = ({
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
 
+  console.log(balances, 'bualances');
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset;
@@ -152,6 +154,7 @@ const Menu: React.FC<NavProps> = ({
                 useIFBalance={useIFBalance}
                 ifIcon={ifIcon}
                 useBnbBalance={useBnbBalance}
+                balances={[...balances]}
               />
             )}
           </Flex>
