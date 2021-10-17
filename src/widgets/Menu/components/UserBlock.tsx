@@ -60,9 +60,7 @@ const WalletIcon = () => (
 );
 
 const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout, balances = [] }) => {
-  console.log(balances, 'harimu')
-
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, [...balances]);
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();

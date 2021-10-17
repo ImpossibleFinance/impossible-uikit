@@ -17,7 +17,6 @@ interface Props {
 }
 
 const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [] }) => {
-  console.log(balances, 'banyak')
   return (
     <Modal title="Account" onDismiss={onDismiss}>
       <Text
@@ -34,18 +33,21 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
         <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
       </Flex>
       <Text
-        fontSize="18px"
+        fontSize="16px"
         bold
       >
         Balance
       </Text>
       {balances.map(balance => {
-        return <Text
-          fontSize="18px"
-          bold
-        >
-          {balance.balance} {balance.symbol}
-        </Text>
+        return (<Flex alignItems="center" marginTop="8px">
+          <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
+          <Text
+            fontSize="16px"
+            marginLeft="8px"
+          >
+            {balance.balance}
+          </Text>
+        </Flex>)
       })}
       <Flex justifyContent="center">
         <Button

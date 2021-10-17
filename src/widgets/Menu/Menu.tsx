@@ -154,7 +154,7 @@ const Menu: React.FC<NavProps> = ({
                 useIFBalance={useIFBalance}
                 ifIcon={ifIcon}
                 useBnbBalance={useBnbBalance}
-                balances={[...balances]}
+                balances={balances}
               />
             )}
           </Flex>

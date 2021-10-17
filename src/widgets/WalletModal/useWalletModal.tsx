@@ -10,9 +10,8 @@ interface ReturnType {
 }
 
 const useWalletModal = (login: Login, logout: () => void, account?: string, balances: TokenBalance[] = []): ReturnType => {
-  console.log(balances, 'untitls')
   const [onPresentConnectModal] = useModal(<ConnectModal login={login} />)
-  const [onPresentAccountModal] = useModal(<AccountModal account={account || ''} logout={logout} balances={[...balances]} />)
+  const [onPresentAccountModal] = useModal(<AccountModal account={account || ''} logout={logout} balances={balances} />)
   return { onPresentConnectModal, onPresentAccountModal }
 }
 
