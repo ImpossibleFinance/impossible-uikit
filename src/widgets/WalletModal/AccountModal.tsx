@@ -32,23 +32,27 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
         </LinkExternal>
         <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
       </Flex>
-      <Text
-        fontSize="16px"
-        bold
-      >
-        Balance
-      </Text>
-      {balances.map(balance => {
-        return (<Flex alignItems="center" marginTop="8px">
-          <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
+      {
+        balances.length > 0 && <>
           <Text
             fontSize="16px"
-            marginLeft="8px"
+            bold
           >
-            {balance.balance}
+            Balance
           </Text>
-        </Flex>)
-      })}
+          {balances.map(balance => {
+            return (<Flex alignItems="center" marginTop="8px">
+              <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
+              <Text
+                fontSize="16px"
+                marginLeft="8px"
+              >
+                {balance.balance}
+              </Text>
+            </Flex>)
+          })}
+        </>
+      }
       <Flex justifyContent="center">
         <Button
           scale="sm"

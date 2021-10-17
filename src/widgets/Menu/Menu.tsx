@@ -100,7 +100,6 @@ const Menu: React.FC<NavProps> = ({
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
 
-  console.log(balances, 'bualances');
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset;
