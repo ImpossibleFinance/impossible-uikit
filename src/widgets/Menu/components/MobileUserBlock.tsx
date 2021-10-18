@@ -4,7 +4,7 @@ import { Box, Flex } from "../../../components/Box";
 import Button from "../../../components/Button/Button";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 import { useWalletModal } from "../../WalletModal";
-import { Login } from "../../WalletModal/types";
+import { Login, TokenBalance } from "../../WalletModal/types";
 
 interface Props {
   account?: string;
@@ -12,6 +12,7 @@ interface Props {
   useBnbBalance?: () => string;
   login: Login;
   logout: () => void;
+  balances?: TokenBalance[]
 }
 
 const UserBlockWrapper = styled.div`
@@ -52,8 +53,8 @@ const WalletIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout, balances }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();

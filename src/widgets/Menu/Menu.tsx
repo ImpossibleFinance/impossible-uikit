@@ -166,6 +166,7 @@ const Menu: React.FC<NavProps> = ({
           logout={logout}
           useIFBalance={useIFBalance}
           useBnbBalance={useBnbBalance}
+          balances={balances}
         />
       )}
       <BodyWrapper>

@@ -11,6 +11,7 @@ interface Props extends InjectedProps {
   hideCloseButton?: boolean
   onBack?: () => void
   bodyPadding?: string
+  style?: React.CSSProperties
 }
 
 const StyledModal = styled.div`
@@ -47,8 +48,9 @@ const Modal: React.FC<Props> = ({
   children,
   hideCloseButton = false,
   bodyPadding = '24px',
+  style,
 }) => (
-  <StyledModal>
+  <StyledModal style={style}>
     <ModalHeader>
       <ModalTitle>
         {onBack && (

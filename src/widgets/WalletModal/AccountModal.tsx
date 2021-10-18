@@ -18,7 +18,7 @@ interface Props {
 
 const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [] }) => {
   return (
-    <Modal title="Account" onDismiss={onDismiss}>
+    <Modal title="Account" onDismiss={onDismiss} style={{ borderRadius: '16px' }}>
       <Text
         fontSize="20px"
         bold
@@ -41,7 +41,7 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
             Balance
           </Text>
           {balances.map(balance => {
-            return (<Flex alignItems="center" marginTop="8px">
+            return (<Flex alignItems="center" marginTop="24px">
               <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
               <Text
                 fontSize="16px"
