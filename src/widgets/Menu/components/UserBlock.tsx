@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../../../components/Button/Button";
 import { useWalletModal } from "../../WalletModal";
 import { Box } from "../../../components/Box";
-import { Login } from "../../WalletModal/types";
+import { Login, TokenBalance } from "../../WalletModal/types";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
   login: Login;
   logout: () => void;
   ifIcon?: string;
+  balances?: TokenBalance[]
 }
 
 const UserBlockWrapper = styled.div`
@@ -58,8 +59,8 @@ const WalletIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
+const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout, balances = [] }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();
@@ -106,4 +107,4 @@ const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIc
   );
 };
 
-export default React.memo(UserBlock, (prevProps, nextProps) => prevProps.account === nextProps.account);
+export default React.memo(UserBlock, (prevProps, nextProps) => prevProps.account === nextProps.account && prevProps.balances === nextProps.balances);

@@ -16,3 +16,9 @@ export interface Config {
   connectorId: ConnectorNames
   fathomID?: string
 }
+
+export interface TokenBalance {
+  symbol: string
+  iconSrc: string
+  balance: string
+}

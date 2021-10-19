@@ -92,6 +92,7 @@ const Menu: React.FC<NavProps> = ({
   langs,
   setLang,
   currentLang,
+  balances = [],
 }) => {
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
@@ -152,6 +153,7 @@ const Menu: React.FC<NavProps> = ({
                 useIFBalance={useIFBalance}
                 ifIcon={ifIcon}
                 useBnbBalance={useBnbBalance}
+                balances={balances}
               />
             )}
           </Flex>
@@ -164,6 +166,7 @@ const Menu: React.FC<NavProps> = ({
           logout={logout}
           useIFBalance={useIFBalance}
           useBnbBalance={useBnbBalance}
+          balances={balances}
         />
       )}
       <BodyWrapper>
