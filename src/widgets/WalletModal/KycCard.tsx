@@ -33,9 +33,12 @@ const ButtonContainer = styled.div`
   text-align: center;
 `
 
-// const KYCButton = styled.Button`
-//   border-radius: 20px;
-// `
+const KYCButton = styled(Button) <{ status: string, passMinRequirement: boolean }>`
+  border-radius: 20px;
+  width: ${({ passMinRequirement }) => (passMinRequirement ? '120px' : '200px')};
+  background: ${({ status }) => (status === 'FINAL_REJECTED' ? '#FF5E67' : '#0AC6E5')};
+  opacity: ${({ status }) => (status === 'PENDING' ? '0.5' : '1')};
+`
 
 const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
   const { status, passMinRequirement, isLoading,
@@ -52,23 +55,17 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
           </Flex>
           <Flex justifyContent="center" alignItems="center">
             <a href={getIFUrl} target="_blank" rel="noopener noreferrer">
-              <Button
-                style={
-                  { borderRadius: '20px', width: '120px' }
-                }>
+              <KYCButton passMinRequirement>
                 Get IF
-              </Button>
+              </KYCButton>
             </a>
             <Flex marginX="8px">
               <Text color="#D0D5D6">OR</Text>
             </Flex>
             <a href={getIDIAUrl} target="_blank" rel="noopener noreferrer">
-              <Button
-                style={
-                  { borderRadius: '20px', width: '120px' }
-                }>
+              <KYCButton passMinRequirement>
                 Get IDIA
-              </Button>
+              </KYCButton>
             </a>
           </Flex>
         </Flex>
@@ -80,14 +77,11 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
             Your KYC has been rejected, please contact <br /> our vendor if you need further support.
           </Text>
           <ButtonContainer>
-            <Button
-              disabled
-              style={
-                { color: 'white', background: "#FF5E67", borderRadius: '20px', width: '200px' }
-              }
+            <KYCButton
+              status={status}
             >
-              Rejected
-            </Button>
+              Final Rejected
+            </KYCButton>
           </ButtonContainer>
         </Flex >
       )
@@ -98,15 +92,13 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
             {status === "PENDING" ? "Your KYC is under verifying by our vendor." : "Start the KYC verification with this address."}
           </Flex>
           <ButtonContainer>
-            <Button
+            <KYCButton
               disabled={isLoading}
               onClick={verifyKycCallback}
-              style={
-                status === "PENDING" ? { color: 'white', opacity: 0.5, borderRadius: '20px', width: '200px' } : { borderRadius: '20px', width: '200px' }
-              }
+              status={status}
             >
               {!status || status === "NOT_STARTED" ? 'Verify KYC' : 'Verifying'}
-            </Button>
+            </KYCButton>
           </ButtonContainer>
         </Flex>
       )
