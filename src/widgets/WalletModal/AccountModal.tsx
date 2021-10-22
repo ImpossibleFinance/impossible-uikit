@@ -5,18 +5,19 @@ import LinkExternal from '../../components/Link/LinkExternal'
 import Flex from '../../components/Box/Flex'
 import { Modal } from '../Modal'
 import CopyToClipboard from './CopyToClipboard'
+import KYCOpen from './KycCard'
 import { connectorLocalStorageKey } from './config'
-import { TokenBalance } from './types'
-
+import { TokenBalance, KycInfo } from './types'
 
 interface Props {
   account: string
   logout: () => void
   onDismiss?: () => void
   balances?: TokenBalance[]
+  kycInfo?: KycInfo
 }
 
-const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [] }) => {
+const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [], kycInfo }) => {
   return (
     <Modal title="Account" onDismiss={onDismiss} style={{ borderRadius: '16px' }}>
       <Text
@@ -32,6 +33,11 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
         </LinkExternal>
         <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
       </Flex>
+      {
+        kycInfo && <Flex marginY="8px">
+          <KYCOpen kycInfo={kycInfo} />
+        </Flex>
+      }
       {
         balances.length > 0 && <>
           <Text

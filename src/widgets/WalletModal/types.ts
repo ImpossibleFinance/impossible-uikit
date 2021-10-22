@@ -22,3 +22,14 @@ export interface TokenBalance {
   iconSrc: string
   balance: string
 }
+
+export interface KycInfo {
+  status: string
+  isLoading: boolean
+  passMinRequirement: boolean
+  minRequirementText: string
+  verifiedSrc: string
+  verifyKycCallback: () => void
+  getIFUrl: string
+  getIDIAUrl: string
+}
