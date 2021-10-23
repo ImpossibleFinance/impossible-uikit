@@ -36,8 +36,8 @@ const ButtonContainer = styled.div`
 const KYCButton = styled(Button) <{ status: string, passMinRequirement: boolean }>`
   border-radius: 20px;
   width: ${({ passMinRequirement }) => (passMinRequirement ? '120px' : '200px')};
-  background: ${({ status }) => (status === 'FINAL_REJECTED' ? '#FF5E67' : '#0AC6E5')};
-  opacity: ${({ status }) => (status === 'PENDING' ? '0.5' : '1')};
+  background: ${({ status }) => (status === 'FINAL_REJECTED' || status === 'REJECTED' ? '#FF5E67' : '#0AC6E5')};
+  opacity: ${({ status }) => (status === 'PENDING' || status === 'FINAL_REJECTED' ? '0.5' : '1')};
 `
 
 const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
@@ -69,6 +69,23 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
             </a>
           </Flex>
         </Flex>
+      )
+    } else if (status === "REJECTED") {
+      Component = (
+        <Flex flexDirection="column">
+          <Text marginBottom="8px">
+            Your KYC has been rejected, please contact <br /> our vendor if you need further support.
+          </Text>
+          <ButtonContainer>
+            <KYCButton
+              disabled={isLoading}
+              onClick={verifyKycCallback}
+              status={status}
+            >
+              Resubmit KYC
+            </KYCButton>
+          </ButtonContainer>
+        </Flex >
       )
     } else if (status === "FINAL_REJECTED") {
       Component = (
