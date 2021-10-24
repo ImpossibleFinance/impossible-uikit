@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../../../components/Button/Button";
 import { useWalletModal } from "../../WalletModal";
+import useNetworkModal from "../../WalletModal/useNetworkModal";
 import { Box } from "../../../components/Box";
-import { Login, TokenBalance } from "../../WalletModal/types";
+import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 
 interface Props {
@@ -14,6 +15,8 @@ interface Props {
   logout: () => void;
   ifIcon?: string;
   balances?: TokenBalance[]
+  kycInfo?: KycInfo
+  networks?: Network[]
 }
 
 const UserBlockWrapper = styled.div`
@@ -32,12 +35,24 @@ const IFBalance = styled.div`
   justify-content: center;
 `;
 
+const NetworkButton = styled(Button) <{ backgroundColor: string }>`
+  background: ${({ backgroundColor }) => backgroundColor};
+  padding: 12px;
+  border-radius: 20px;
+  color: ${({ theme }) => theme.colors.invertedContrast};
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const AccountWrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundDisabled};
   border-radius: 30px;
   padding: 3px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const BnbBalance = styled.div`
@@ -59,20 +74,27 @@ const WalletIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout, balances = [] }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances);
+const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [] }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
+  const { onPresentNetworkModal } = useNetworkModal(networks)
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
-  const ifBalance = useIFBalance && useIFBalance();
   const bnbBalance = useBnbBalance && useBnbBalance();
+  const currentNetwork = networks.find(network => network.isCurrent);
+
   return (
     <div>
       {account ? (
         <UserBlockWrapper>
-          {ifBalance ? (
-            <IFBalance>
-              {ifIcon ? <img width="20px" alt="IFIcon" src={ifIcon} /> : 'IF'}<b style={{ marginLeft: "4px" }}>{ifBalance}</b>
-            </IFBalance>
-          ) : null}
+          {currentNetwork && (
+            <NetworkButton
+              onClick={() => {
+                onPresentNetworkModal();
+              }}
+              backgroundColor={currentNetwork.backgroundColor}
+            >
+              <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
+            </NetworkButton>
+          )}
           <AccountWrapper>
             {bnbBalance ? (
               <BnbBalance>

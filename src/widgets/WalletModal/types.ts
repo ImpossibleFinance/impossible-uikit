@@ -22,3 +22,23 @@ export interface TokenBalance {
   iconSrc: string
   balance: string
 }
+
+export interface Network {
+  chainID: number
+  iconSrc: string
+  backgroundColor: string
+  name: string
+  switchNetworkCallback?: () => void
+  isCurrent?: boolean
+}
+
+export interface KycInfo {
+  status: string
+  isLoading: boolean
+  passMinRequirement: boolean
+  minRequirementText: string
+  verifiedSrc: string
+  verifyKycCallback: () => void
+  getIFUrl: string
+  getIDIAUrl: string
+}
