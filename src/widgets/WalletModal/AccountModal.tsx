@@ -53,7 +53,7 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
                 fontSize="16px"
                 marginLeft="8px"
               >
-                {balance.balance}
+                {balance.balance} {balance.symbol.toUpperCase()}
               </Text>
             </Flex>)
           })}
