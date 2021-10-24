@@ -33,9 +33,9 @@ const ButtonContainer = styled.div`
   text-align: center;
 `
 
-const KYCButton = styled(Button) <{ status: string, passMinRequirement: boolean }>`
+const KYCButton = styled(Button) <{ status: string, getToken: boolean }>`
   border-radius: 20px;
-  width: ${({ passMinRequirement }) => (passMinRequirement ? '120px' : '200px')};
+  width: ${({ getToken }) => (getToken ? '120px' : '200px')};
   background: ${({ status }) => (status === 'FINAL_REJECTED' || status === 'REJECTED' ? '#FF5E67' : '#0AC6E5')};
   opacity: ${({ status }) => (status === 'PENDING' || status === 'FINAL_REJECTED' ? '0.5' : '1')};
 `
@@ -63,7 +63,7 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
               <Text color="#D0D5D6">OR</Text>
             </Flex>
             <a href={getIDIAUrl} target="_blank" rel="noopener noreferrer">
-              <KYCButton passMinRequirement>
+              <KYCButton getToken>
                 Get IDIA
               </KYCButton>
             </a>
