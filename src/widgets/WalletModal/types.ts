@@ -23,6 +23,15 @@ export interface TokenBalance {
   balance: string
 }
 
+export interface Network {
+  chainID: number
+  iconSrc: string
+  backgroundColor: string
+  name: string
+  switchNetworkCallback?: () => void
+  isCurrent?: boolean
+}
+
 export interface KycInfo {
   status: string
   isLoading: boolean
