@@ -38,7 +38,7 @@ const IFBalance = styled.div`
 const NetworkButton = styled(Button) <{ backgroundColor: string }>`
   background: ${({ backgroundColor }) => backgroundColor};
   padding: 12px;
-  border-radius: 20px;
+  border-radius: 22px;
   color: ${({ theme }) => theme.colors.invertedContrast};
   margin-right: 12px;
   display: flex;
