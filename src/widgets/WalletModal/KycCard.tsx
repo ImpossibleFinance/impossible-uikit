@@ -55,7 +55,7 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
           </Flex>
           <Flex justifyContent="center" alignItems="center">
             <a href={getIFUrl} target="_blank" rel="noopener noreferrer">
-              <KYCButton passMinRequirement>
+              <KYCButton getToken>
                 Get IF
               </KYCButton>
             </a>
