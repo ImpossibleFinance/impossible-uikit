@@ -93,6 +93,7 @@ const Menu: React.FC<NavProps> = ({
   setLang,
   currentLang,
   balances = [],
+  networks = [],
   kycInfo,
 }) => {
   const { isXl } = useMatchBreakpoints();
@@ -156,6 +157,7 @@ const Menu: React.FC<NavProps> = ({
                 useBnbBalance={useBnbBalance}
                 balances={balances}
                 kycInfo={kycInfo}
+                networks={networks}
               />
             )}
           </Flex>
@@ -170,6 +172,7 @@ const Menu: React.FC<NavProps> = ({
           useBnbBalance={useBnbBalance}
           balances={balances}
           kycInfo={kycInfo}
+          networks={networks}
         />
       )}
       <BodyWrapper>

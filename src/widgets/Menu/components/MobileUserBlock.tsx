@@ -4,7 +4,9 @@ import { Box, Flex } from "../../../components/Box";
 import Button from "../../../components/Button/Button";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 import { useWalletModal } from "../../WalletModal";
-import { Login, TokenBalance, KycInfo } from "../../WalletModal/types";
+import useNetworkModal from "../../WalletModal/useNetworkModal";
+
+import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 
 interface Props {
   account?: string;
@@ -14,6 +16,7 @@ interface Props {
   logout: () => void;
   balances?: TokenBalance[]
   kycInfo?: KycInfo
+  networks?: Network[]
 }
 
 const UserBlockWrapper = styled.div`
@@ -40,9 +43,17 @@ const AccountWrapper = styled.div`
   flex-direction: row;
 `;
 
-const ShowBalance = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
+const NetworkButton = styled(Button) <{ backgroundColor: string }>`
+  background: ${({ backgroundColor }) => backgroundColor};
+  padding: 12px;
+  border-radius: 20px;
+  color: ${({ theme }) => theme.colors.invertedContrast};
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
+
 
 const Label = styled.div`
   color: ${({ theme }) => theme.colors.text};
@@ -54,20 +65,29 @@ const WalletIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout, balances, kycInfo }) => {
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout, balances, kycInfo, networks = [] }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
+  const { onPresentNetworkModal } = useNetworkModal(networks)
+
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
-  const ifBalance = useIFBalance && useIFBalance();
-  const bnbBalance = useBnbBalance && useBnbBalance();
-  const [showBalance, setShowBalance] = useState(false);
-  const showBalanceClick = useCallback(() => {
-    setShowBalance(!showBalance);
-  }, [setShowBalance, showBalance]);
+
+  const currentNetwork = networks.find(network => network.isCurrent);
+
   return (
     <UserBlockWrapper>
       {account ? (
         <Flex flexDirection="column" flex={1}>
           <Flex flexDirection="row" justifyContent="space-between" alignItems="center">
+            {currentNetwork && (
+              <NetworkButton
+                onClick={() => {
+                  onPresentNetworkModal();
+                }}
+                backgroundColor={currentNetwork.backgroundColor}
+              >
+                <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
+              </NetworkButton>
+            )}
             <AccountWrapper>
               <Button
                 scale="sm"
@@ -79,20 +99,7 @@ const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance
                 {accountEllipsis}
               </Button>
             </AccountWrapper>
-            <ShowBalance onClick={showBalanceClick}>{showBalance ? "Hide Balance" : "Show balance"}</ShowBalance>
           </Flex>
-          {showBalance && (
-            <Flex mt="12px" flexDirection="row" justifyContent="space-between" alignItems="center">
-              <Label>IF</Label>
-              <Label>{ifBalance}</Label>
-            </Flex>
-          )}
-          {showBalance && (
-            <Flex mt="12px" flexDirection="row" justifyContent="space-between" alignItems="center">
-              <Label>BNB</Label>
-              <Label>{bnbBalance}</Label>
-            </Flex>
-          )}
         </Flex>
       ) : (
         <Flex justifyContent="center">
