@@ -42,6 +42,7 @@ const NetworkButton = styled(Button) <{ backgroundColor: string }>`
   color: ${({ theme }) => theme.colors.invertedContrast};
   margin-right: 12px;
   display: flex;
+  height: 42px;
   align-items: center;
   justify-content: center;
 `;
@@ -51,6 +52,7 @@ const AccountWrapper = styled.div`
   border-radius: 30px;
   padding: 3px;
   display: flex;
+  height: 42px;
   flex-direction: row;
   align-items: center;
 `;

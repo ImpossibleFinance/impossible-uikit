@@ -28,6 +28,7 @@ export interface Network {
   iconSrc: string
   backgroundColor: string
   name: string
+  fullName?: string
   switchNetworkCallback?: () => void
   isCurrent?: boolean
 }
