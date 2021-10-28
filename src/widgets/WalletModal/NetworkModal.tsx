@@ -32,7 +32,7 @@ const CheckmarkInnerBox = styled.div`
 const NetworkModal: React.FC<Props> = ({ onDismiss = () => null, networks = [] }) => {
   const currentNetwork = networks.find(network => network.isCurrent);
   return (
-    <Modal title="Select a Network" onDismiss={onDismiss} style={{ borderRadius: '16px' }}>
+    <Modal title="Select Network" onDismiss={onDismiss} style={{ borderRadius: '16px' }} bodyPadding="0px 16px 16px 16px">
       {
         networks.length > 0 && <>
           {networks.map((network, index) => {
