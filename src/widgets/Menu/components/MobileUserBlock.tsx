@@ -11,7 +11,7 @@ import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 interface Props {
   account?: string;
   useIFBalance?: () => string;
-  useBnbBalance?: () => string;
+  useGasBalance?: () => string;
   login: Login;
   logout: () => void;
   balances?: TokenBalance[]
@@ -65,7 +65,7 @@ const WalletIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useBnbBalance, login, logout, balances, kycInfo, networks = [] }) => {
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance, login, logout, balances, kycInfo, networks = [] }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
   const { onPresentNetworkModal } = useNetworkModal(networks)
 
