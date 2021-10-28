@@ -10,7 +10,8 @@ import Wallet from "../../../components/Svg/Icons/Wallet";
 interface Props {
   account?: string;
   useIFBalance?: () => string;
-  useBnbBalance?: () => string;
+  useGasBalance?: () => string;
+  gasToken?: string;
   login: Login;
   logout: () => void;
   ifIcon?: string;
@@ -76,11 +77,11 @@ const WalletIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [] }) => {
+const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [] }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
   const { onPresentNetworkModal } = useNetworkModal(networks)
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
-  const bnbBalance = useBnbBalance && useBnbBalance();
+  const gasBalance = useGasBalance && useGasBalance();
   const currentNetwork = networks.find(network => network.isCurrent);
 
   return (
@@ -98,9 +99,9 @@ const UserBlock: React.FC<Props> = ({ account, useBnbBalance, useIFBalance, ifIc
             </NetworkButton>
           )}
           <AccountWrapper>
-            {bnbBalance ? (
+            {gasBalance ? (
               <BnbBalance>
-                <b>{bnbBalance}</b> BNB
+                <b>{gasBalance}</b>{" "} {gasToken}
               </BnbBalance>
             ) : null}
             <Button

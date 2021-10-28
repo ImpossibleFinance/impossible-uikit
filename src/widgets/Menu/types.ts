@@ -56,7 +56,8 @@ export interface NavProps extends PanelProps {
   account?: string
   ifPriceUsd?: number
   useIFBalance?: () => string
-  useBnbBalance?: () => string
+  useGasBalance?: () => string
+  gasToken?: string
   ifIcon?: string
   login: Login
   profile?: Profile

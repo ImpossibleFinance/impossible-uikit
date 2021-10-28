@@ -84,7 +84,8 @@ const Menu: React.FC<NavProps> = ({
   logout,
   links,
   children,
-  useBnbBalance,
+  useGasBalance,
+  gasToken,
   useIFBalance,
   ifIcon,
   ifPriceUsd,
@@ -154,7 +155,8 @@ const Menu: React.FC<NavProps> = ({
                 logout={logout}
                 useIFBalance={useIFBalance}
                 ifIcon={ifIcon}
-                useBnbBalance={useBnbBalance}
+                useGasBalance={useGasBalance}
+                gasToken={gasToken}
                 balances={balances}
                 kycInfo={kycInfo}
                 networks={networks}
@@ -169,7 +171,7 @@ const Menu: React.FC<NavProps> = ({
           login={login}
           logout={logout}
           useIFBalance={useIFBalance}
-          useBnbBalance={useBnbBalance}
+          useGasBalance={useGasBalance}
           balances={balances}
           kycInfo={kycInfo}
           networks={networks}
