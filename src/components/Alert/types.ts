@@ -21,4 +21,6 @@ export interface AlertProps {
   onClick?: (evt: MouseEvent<HTMLButtonElement>) => void
   toastBackground?: string
   alertBackground?: string
+  toastIcon?: string
+  toastBorder?: string
 }
