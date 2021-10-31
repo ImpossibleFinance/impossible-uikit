@@ -4,6 +4,7 @@ export const types = {
   WARNING: 'warning',
   INFO: 'info',
   ANNOUNCEMENT: 'announcement',
+  CUSTOM: 'custom',
 }
 
 export type Types = typeof types[keyof typeof types]
@@ -21,6 +22,8 @@ export interface Toast {
   action?: ToastAction
   alertBackground?: string
   toastBackground?: string
+  toastIcon?: string
+  toastBorder?: string
   alwaysShow?: boolean
   icon?: string
   onClick?: Function
