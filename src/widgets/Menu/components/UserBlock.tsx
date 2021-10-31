@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../../../components/Button/Button";
 import { useWalletModal } from "../../WalletModal";
-import useNetworkModal from "../../WalletModal/useNetworkModal";
+import useNetworkModal from "../../../hooks/useNetworkModal";
 import { Box } from "../../../components/Box";
 import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 import Wallet from "../../../components/Svg/Icons/Wallet";

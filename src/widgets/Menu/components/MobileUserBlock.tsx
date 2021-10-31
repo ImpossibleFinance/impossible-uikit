@@ -4,7 +4,7 @@ import { Box, Flex } from "../../../components/Box";
 import Button from "../../../components/Button/Button";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 import { useWalletModal } from "../../WalletModal";
-import useNetworkModal from "../../WalletModal/useNetworkModal";
+import useNetworkModal from "../../../hooks/useNetworkModal";
 
 import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 
