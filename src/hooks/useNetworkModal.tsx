@@ -1,7 +1,7 @@
 import React from 'react'
-import { useModal } from '../Modal'
-import { Network } from './types'
-import NetworkModal from './NetworkModal'
+import { useModal } from '../widgets/Modal'
+import { Network } from '../widgets/WalletModal/types'
+import NetworkModal from '../widgets/WalletModal/NetworkModal'
 
 interface ReturnType {
   onPresentNetworkModal: () => void
