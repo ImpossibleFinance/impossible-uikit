@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Box, Flex } from "../../../components/Box";
 import Button from "../../../components/Button/Button";
 import Wallet from "../../../components/Svg/Icons/Wallet";
+import Warning from "../icons/Warning";
 import { useWalletModal } from "../../WalletModal";
 import useNetworkModal from "../../../hooks/useNetworkModal";
 
@@ -17,6 +18,7 @@ interface Props {
   balances?: TokenBalance[]
   kycInfo?: KycInfo
   networks?: Network[]
+  isNetworkUnavailable?: boolean
 }
 
 const UserBlockWrapper = styled.div`
@@ -34,6 +36,13 @@ const WalletButton = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.09);
 `;
+
+const UnsupportedButton = styled(Button)`
+  background: #FF5E67;
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.09);
+`
 
 const AccountWrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundDisabled};
@@ -65,7 +74,13 @@ const WalletIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance, login, logout, balances, kycInfo, networks = [] }) => {
+const WarningIcon = () => (
+  <Box ml="8px">
+    <Warning />
+  </Box>
+);
+
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance, login, logout, balances, kycInfo, networks = [], isNetworkUnavailable }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
   const { onPresentNetworkModal } = useNetworkModal(networks)
 
@@ -73,49 +88,67 @@ const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance
 
   const currentNetwork = networks.find(network => network.isCurrent);
 
+  const renderButton = () => {
+    if (isNetworkUnavailable) {
+      return <Flex justifyContent="center">
+        <UnsupportedButton
+          height="42px"
+          width="250px"
+          scale="md"
+          endIcon={<WarningIcon />}
+          onClick={() => {
+            onPresentNetworkModal();
+          }}
+        >
+          Network Unavailable
+        </UnsupportedButton>
+      </Flex>
+    }
+    if (account) {
+      return <Flex flexDirection="column" flex={1}>
+        <Flex flexDirection="row" justifyContent="space-between" alignItems="center">
+          {currentNetwork && (
+            <NetworkButton
+              onClick={() => {
+                onPresentNetworkModal();
+              }}
+              backgroundColor={currentNetwork.backgroundColor}
+            >
+              <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
+            </NetworkButton>
+          )}
+          <AccountWrapper>
+            <Button
+              scale="sm"
+              variant="tertiary"
+              onClick={() => {
+                onPresentAccountModal();
+              }}
+            >
+              {accountEllipsis}
+            </Button>
+          </AccountWrapper>
+        </Flex>
+      </Flex>
+    }
+    return <Flex justifyContent="center">
+      <WalletButton
+        height="42px"
+        width="230px"
+        scale="md"
+        endIcon={<WalletIcon />}
+        onClick={() => {
+          onPresentConnectModal();
+        }}
+      >
+        Connect Wallet
+      </WalletButton>
+    </Flex>
+  }
+
   return (
     <UserBlockWrapper>
-      {account ? (
-        <Flex flexDirection="column" flex={1}>
-          <Flex flexDirection="row" justifyContent="space-between" alignItems="center">
-            {currentNetwork && (
-              <NetworkButton
-                onClick={() => {
-                  onPresentNetworkModal();
-                }}
-                backgroundColor={currentNetwork.backgroundColor}
-              >
-                <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
-              </NetworkButton>
-            )}
-            <AccountWrapper>
-              <Button
-                scale="sm"
-                variant="tertiary"
-                onClick={() => {
-                  onPresentAccountModal();
-                }}
-              >
-                {accountEllipsis}
-              </Button>
-            </AccountWrapper>
-          </Flex>
-        </Flex>
-      ) : (
-        <Flex justifyContent="center">
-          <WalletButton
-            height="42px"
-            width="230px"
-            scale="md"
-            endIcon={<WalletIcon />}
-            onClick={() => {
-              onPresentConnectModal();
-            }}
-          >
-            Connect Wallet
-          </WalletButton>
-        </Flex>
-      )}
+      {renderButton()}
     </UserBlockWrapper>
   );
 };

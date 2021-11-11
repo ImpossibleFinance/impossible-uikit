@@ -65,4 +65,5 @@ export interface NavProps extends PanelProps {
   balances?: TokenBalance[]
   networks?: Network[]
   kycInfo?: KycInfo
+  isNetworkUnavailable?: boolean
 }
