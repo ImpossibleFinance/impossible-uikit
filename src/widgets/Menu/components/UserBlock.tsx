@@ -1,9 +1,11 @@
+// eslint-disable-next-line no-nested-ternary
 import React from "react";
 import styled from "styled-components";
 import Button from "../../../components/Button/Button";
 import { useWalletModal } from "../../WalletModal";
 import useNetworkModal from "../../../hooks/useNetworkModal";
 import { Box } from "../../../components/Box";
+import Warning from "../icons/Warning";
 import { Login, TokenBalance, KycInfo, Network } from "../../WalletModal/types";
 import Wallet from "../../../components/Svg/Icons/Wallet";
 
@@ -18,6 +20,7 @@ interface Props {
   balances?: TokenBalance[]
   kycInfo?: KycInfo
   networks?: Network[]
+  isNetworkUnavailable?: boolean
 }
 
 const UserBlockWrapper = styled.div`
@@ -71,63 +74,92 @@ const WalletButton = styled(Button)`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.09);
 `;
 
+const UnsupportedButton = styled(Button)`
+  background: #FF5E67;
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.09);
+`
+
 const WalletIcon = () => (
   <Box ml="8px">
     <Wallet />
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [] }) => {
+const WarningIcon = () => (
+  <Box ml="8px">
+    <Warning />
+  </Box>
+);
+
+const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [], isNetworkUnavailable }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
   const { onPresentNetworkModal } = useNetworkModal(networks)
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const gasBalance = useGasBalance && useGasBalance();
   const currentNetwork = networks.find(network => network.isCurrent);
 
+  const renderButton = () => {
+    if (isNetworkUnavailable) {
+      return <UnsupportedButton
+        height="42px"
+        width="250px"
+        scale="md"
+        endIcon={<WarningIcon />}
+        onClick={() => {
+          onPresentNetworkModal();
+        }}
+      >
+        Network Unavailable
+      </UnsupportedButton>
+    }
+    if (account) {
+      return <UserBlockWrapper>
+        {currentNetwork && (
+          <NetworkButton
+            onClick={() => {
+              onPresentNetworkModal();
+            }}
+            backgroundColor={currentNetwork.backgroundColor}
+          >
+            <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
+          </NetworkButton>
+        )}
+        <AccountWrapper>
+          {gasBalance ? (
+            <BnbBalance>
+              <b>{gasBalance}</b>{" "} {gasToken}
+            </BnbBalance>
+          ) : null}
+          <Button
+            scale="sm"
+            variant="tertiary"
+            onClick={() => {
+              onPresentAccountModal();
+            }}
+          >
+            {accountEllipsis}
+          </Button>
+        </AccountWrapper>
+      </UserBlockWrapper>
+    }
+    return <WalletButton
+      height="42px"
+      width="200px"
+      scale="md"
+      endIcon={<WalletIcon />}
+      onClick={() => {
+        onPresentConnectModal();
+      }}
+    >
+      Connect Wallet
+    </WalletButton>
+  }
+
   return (
     <div>
-      {account ? (
-        <UserBlockWrapper>
-          {currentNetwork && (
-            <NetworkButton
-              onClick={() => {
-                onPresentNetworkModal();
-              }}
-              backgroundColor={currentNetwork.backgroundColor}
-            >
-              <img width="20px" alt="NetworkIcon" src={currentNetwork.iconSrc} /><b style={{ marginLeft: "4px" }}>{currentNetwork.name}</b>
-            </NetworkButton>
-          )}
-          <AccountWrapper>
-            {gasBalance ? (
-              <BnbBalance>
-                <b>{gasBalance}</b>{" "} {gasToken}
-              </BnbBalance>
-            ) : null}
-            <Button
-              scale="sm"
-              variant="tertiary"
-              onClick={() => {
-                onPresentAccountModal();
-              }}
-            >
-              {accountEllipsis}
-            </Button>
-          </AccountWrapper>
-        </UserBlockWrapper>
-      ) : (
-        <WalletButton
-          height="42px"
-          width="200px"
-          scale="md"
-          endIcon={<WalletIcon />}
-          onClick={() => {
-            onPresentConnectModal();
-          }}
-        >
-          Connect Wallet
-        </WalletButton>
-      )}
+      {renderButton()}
     </div>
   );
 };

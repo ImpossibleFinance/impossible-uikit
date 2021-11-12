@@ -96,6 +96,7 @@ const Menu: React.FC<NavProps> = ({
   balances = [],
   networks = [],
   kycInfo,
+  isNetworkUnavailable,
 }) => {
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
@@ -160,6 +161,7 @@ const Menu: React.FC<NavProps> = ({
                 balances={balances}
                 kycInfo={kycInfo}
                 networks={networks}
+                isNetworkUnavailable={isNetworkUnavailable}
               />
             )}
           </Flex>
@@ -175,6 +177,7 @@ const Menu: React.FC<NavProps> = ({
           balances={balances}
           kycInfo={kycInfo}
           networks={networks}
+          isNetworkUnavailable={isNetworkUnavailable}
         />
       )}
       <BodyWrapper>

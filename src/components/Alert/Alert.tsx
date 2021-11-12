@@ -80,7 +80,7 @@ const StyledAlert = styled(Flex) <{ toastBackground?: string, toastBorder?: stri
   background-size: cover;
   background-position: center;
   border-radius: 16px;
-  border: 1px solid ${({ toastBorder }) => toastBorder};
+  border: 1px solid ${({ toastBorder }) => toastBorder && toastBorder.length > 0 ? toastBorder : 'none'};
   box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `
 

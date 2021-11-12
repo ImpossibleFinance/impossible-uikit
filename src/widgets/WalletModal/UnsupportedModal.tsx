@@ -21,7 +21,15 @@ const NetworkBox = styled(Flex)`
 
 const UnsupportedModal: React.FC<Props> = ({ onDismiss = () => null, networks = [] }) => {
   return (
-    <Modal title="Network Unavailable" onDismiss={onDismiss} style={{ borderRadius: '16px' }} bodyPadding="0px 24px 24px 24px">
+    <Modal title="" onDismiss={onDismiss} style={{ borderRadius: '16px' }} bodyPadding="0px 24px 24px 24px">
+      <Flex marginBottom="36px" justifyContent="center">
+        <Text
+          fontSize="24px"
+          fontWeight={500}
+        >
+          Network Unavailable
+        </Text>
+      </Flex>
       <Flex justifyContent="center">
         <Warning width="84px" />
       </Flex>

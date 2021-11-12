@@ -60,7 +60,7 @@ const KYCOpen: React.FC<Props> = ({ kycInfo }) => {
               </KYCButton>
             </a>
             <Flex marginX="8px">
-              <Text color="#D0D5D6">OR</Text>
+              <Text color="#E9EBEC">OR</Text>
             </Flex>
             <a href={getIDIAUrl} target="_blank" rel="noopener noreferrer">
               <KYCButton getToken>
