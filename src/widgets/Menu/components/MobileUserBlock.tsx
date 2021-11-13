@@ -19,6 +19,7 @@ interface Props {
   kycInfo?: KycInfo
   networks?: Network[]
   isNetworkUnavailable?: boolean
+  showNetworks?: boolean
 }
 
 const UserBlockWrapper = styled.div`
@@ -80,9 +81,9 @@ const WarningIcon = () => (
   </Box>
 );
 
-const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance, login, logout, balances, kycInfo, networks = [], isNetworkUnavailable }) => {
+const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance, login, logout, balances, kycInfo, networks = [], isNetworkUnavailable, showNetworks }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
-  const { onPresentNetworkModal } = useNetworkModal(networks)
+  const { onPresentNetworkModal, onPresentUnsupportedNetworkModal } = useNetworkModal(networks)
 
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
 
@@ -97,7 +98,7 @@ const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance
           scale="md"
           endIcon={<WarningIcon />}
           onClick={() => {
-            onPresentNetworkModal();
+            onPresentUnsupportedNetworkModal();
           }}
         >
           Network Unavailable
@@ -107,7 +108,7 @@ const MobileUserBlock: React.FC<Props> = ({ account, useIFBalance, useGasBalance
     if (account) {
       return <Flex flexDirection="column" flex={1}>
         <Flex flexDirection="row" justifyContent="space-between" alignItems="center">
-          {currentNetwork && (
+          {showNetworks && currentNetwork && (
             <NetworkButton
               onClick={() => {
                 onPresentNetworkModal();

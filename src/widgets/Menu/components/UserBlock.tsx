@@ -21,6 +21,7 @@ interface Props {
   kycInfo?: KycInfo
   networks?: Network[]
   isNetworkUnavailable?: boolean
+  showNetworks?: boolean
 }
 
 const UserBlockWrapper = styled.div`
@@ -93,9 +94,9 @@ const WarningIcon = () => (
   </Box>
 );
 
-const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [], isNetworkUnavailable }) => {
+const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBalance, ifIcon, login, logout, balances = [], kycInfo, networks = [], isNetworkUnavailable, showNetworks }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, balances, kycInfo);
-  const { onPresentNetworkModal } = useNetworkModal(networks)
+  const { onPresentNetworkModal, onPresentUnsupportedNetworkModal } = useNetworkModal(networks)
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const gasBalance = useGasBalance && useGasBalance();
   const currentNetwork = networks.find(network => network.isCurrent);
@@ -108,7 +109,7 @@ const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBal
         scale="md"
         endIcon={<WarningIcon />}
         onClick={() => {
-          onPresentNetworkModal();
+          onPresentUnsupportedNetworkModal();
         }}
       >
         Network Unavailable
@@ -116,7 +117,7 @@ const UserBlock: React.FC<Props> = ({ account, useGasBalance, gasToken, useIFBal
     }
     if (account) {
       return <UserBlockWrapper>
-        {currentNetwork && (
+        {showNetworks && currentNetwork && (
           <NetworkButton
             onClick={() => {
               onPresentNetworkModal();

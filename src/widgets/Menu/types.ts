@@ -66,4 +66,5 @@ export interface NavProps extends PanelProps {
   networks?: Network[]
   kycInfo?: KycInfo
   isNetworkUnavailable?: boolean
+  showNetworks?: boolean,
 }
