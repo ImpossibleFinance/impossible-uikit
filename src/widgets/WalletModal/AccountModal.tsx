@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import Button from '../../components/Button/Button'
 import Text from '../../components/Text/Text'
 import LinkExternal from '../../components/Link/LinkExternal'
@@ -6,7 +7,7 @@ import Flex from '../../components/Box/Flex'
 import { Modal } from '../Modal'
 import CopyToClipboard from './CopyToClipboard'
 import KYCOpen from './KycCard'
-import { connectorLocalStorageKey } from './config'
+import connectors, { connectorLocalStorageKey, walletLocalStorageKey } from './config'
 import { TokenBalance, KycInfo } from './types'
 
 interface Props {
@@ -17,21 +18,33 @@ interface Props {
   kycInfo?: KycInfo
 }
 
+const AddressBox = styled(Flex)`
+  padding: 8px;
+  background: #F2F4F5;
+  border-radius: 8px;
+`
+
 const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [], kycInfo }) => {
+  const walletID = window.localStorage.getItem(walletLocalStorageKey)
+  const wallet = connectors.find(connector => connector.walletID === walletID)
+  const Icon = wallet?.icon
+
   return (
     <Modal title="Account" onDismiss={onDismiss} style={{ borderRadius: '16px' }}>
-      <Text
-        fontSize="20px"
-        bold
-        style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '8px' }}
-      >
-        {account}
-      </Text>
+      <AddressBox alignItems="center">
+        {Icon && <Icon width="32px" />}
+        <Text
+          fontSize="15px"
+          style={{ margin: '0 8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+        >
+          {account}
+        </Text>
+        <CopyToClipboard toCopy={account} />
+      </AddressBox>
       <Flex mb="16px">
         <LinkExternal small href={`https://bscscan.com/address/${account}`} mr="16px">
           View on BscScan
         </LinkExternal>
-        <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
       </Flex>
       {
         kycInfo && <Flex marginY="8px">
