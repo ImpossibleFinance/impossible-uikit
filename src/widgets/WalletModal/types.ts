@@ -15,6 +15,7 @@ export interface Config {
   icon: FC<SvgProps>
   connectorId: ConnectorNames
   fathomID?: string
+  walletID?: string
 }
 
 export interface TokenBalance {

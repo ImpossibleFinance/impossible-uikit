@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../../components/Button/Button'
 import Text from '../../components/Text/Text'
-import { connectorLocalStorageKey } from './config'
+import { connectorLocalStorageKey, walletLocalStorageKey } from './config'
 import { Login, Config } from './types'
 
 interface Props {
@@ -23,6 +23,7 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss, mb }) => 
           window.fathom.trackGoal(walletConfig.fathomID, 0);
         }
         window.localStorage.setItem(connectorLocalStorageKey, walletConfig.connectorId)
+        window.localStorage.setItem(walletLocalStorageKey, walletConfig.walletID || '')
         onDismiss()
       }}
       style={{ justifyContent: 'space-between' }}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Text from '../../components/Text/Text'
-import { CopyIcon } from '../../components/Svg'
+import Copy from './icons/Copy'
 
 interface Props {
   toCopy: string
@@ -17,14 +17,14 @@ const StyleButton = styled(Text).attrs({ role: 'button' })`
 const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
   display: ${({ isTooltipDisplayed }) => (isTooltipDisplayed ? 'block' : 'none')};
   position: absolute;
-  bottom: -22px;
-  right: 0;
-  left: 0;
+  bottom: -40px;
+  left: -20px;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.contrast};
   color: ${({ theme }) => theme.colors.invertedContrast};
   border-radius: 16px;
   opacity: 0.7;
+  padding: 8px;
 `
 
 const CopyToClipboard: React.FC<Props> = ({ toCopy, children, ...props }) => {
@@ -46,7 +46,7 @@ const CopyToClipboard: React.FC<Props> = ({ toCopy, children, ...props }) => {
       {...props}
     >
       {children}
-      <CopyIcon width="20px" color="primary" ml="4px" />
+      <Copy width="22px" />
       <Tooltip isTooltipDisplayed={isTooltipDisplayed}>Copied</Tooltip>
     </StyleButton>
   )
