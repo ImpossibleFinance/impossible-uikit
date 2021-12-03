@@ -12,7 +12,6 @@ interface Props {
   networks?: Network[]
 }
 
-
 const CheckmarkBox = styled.div`
   position: absolute;
   right: -10px;
@@ -22,7 +21,7 @@ const CheckmarkBox = styled.div`
 `
 
 const CheckmarkInnerBox = styled.div`
-  background: #0AC6E5;
+  background: #0ac6e5;
   border-radius: 50%;
   padding: 2px;
   height: 20px;
@@ -30,40 +29,48 @@ const CheckmarkInnerBox = styled.div`
 `
 
 const NetworkModal: React.FC<Props> = ({ onDismiss = () => null, networks = [] }) => {
-  const currentNetwork = networks.find(network => network.isCurrent);
+  const currentNetwork = networks.find((network) => network.isCurrent)
   return (
-    <Modal title="Select Network" onDismiss={onDismiss} style={{ borderRadius: '16px' }} bodyPadding="0px 16px 16px 16px">
-      {
-        networks.length > 0 && <>
+    <Modal
+      title="Select Network"
+      onDismiss={onDismiss}
+      style={{ borderRadius: '16px' }}
+      bodyPadding="0px 16px 16px 16px"
+    >
+      {networks.length > 0 && (
+        <>
           {networks.map((network, index) => {
-            return (<Flex style={{ cursor: "pointer" }} alignItems="center" marginTop={index > 0 ? "24px" : "0px"} onClick={() => {
-              if (network?.switchNetworkCallback) {
-                network.switchNetworkCallback();
-              }
-              onDismiss();
-            }}>
-              <div style={{ position: "relative" }}>
-                <img width="40px" alt={network.chainID.toString()} src={network.iconSrc} />
-                {currentNetwork?.chainID === network.chainID &&
-                  <CheckmarkBox>
-                    <CheckmarkInnerBox>
-                      <Checkmark />
-                    </CheckmarkInnerBox>
-                  </CheckmarkBox>
-                }
-              </div>
-              <Text
-                fontSize="16px"
-                marginLeft="10px"
-                fontWeight={network.isCurrent ? 700 : 500}
+            return (
+              <Flex
+                style={{ cursor: 'pointer' }}
+                alignItems="center"
+                marginTop={index > 0 ? '24px' : '0px'}
+                onClick={() => {
+                  if (network?.switchNetworkCallback) {
+                    network.switchNetworkCallback()
+                  }
+                  onDismiss()
+                }}
               >
-                {network.fullName || network.name}
-              </Text>
-            </Flex>)
+                <div style={{ position: 'relative' }}>
+                  <img width="40px" alt={network.chainID.toString()} src={network.iconSrc} />
+                  {currentNetwork?.chainID === network.chainID && (
+                    <CheckmarkBox>
+                      <CheckmarkInnerBox>
+                        <Checkmark />
+                      </CheckmarkInnerBox>
+                    </CheckmarkBox>
+                  )}
+                </div>
+                <Text fontSize="16px" marginLeft="10px" fontWeight={network.isCurrent ? 700 : 500}>
+                  {network.fullName || network.name}
+                </Text>
+              </Flex>
+            )
           })}
         </>
-      }
-    </Modal >
+      )}
+    </Modal>
   )
 }
 

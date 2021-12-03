@@ -41,7 +41,7 @@ const Accordion: React.FC<Props> = ({
   isActive,
 }) => {
   const [isOpen, setIsOpen] = useState(initialOpenState)
-  const theme = useTheme();
+  const theme = useTheme()
 
   const handleClick = () => {
     if (isPushed) {
@@ -56,8 +56,20 @@ const Accordion: React.FC<Props> = ({
     <Container>
       <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
         {icon}
-        <LinkLabel isPushed={isPushed} isActive={isActive}>{label}</LinkLabel>
-        {isOpen ? <ArrowDropUpIcon fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray} color={isActive ? theme.colors.lightGreen : theme.colors.lightGray} /> : <ArrowDropDownIcon fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray} color={isActive ? theme.colors.lightGreen : theme.colors.lightGray} />}
+        <LinkLabel isPushed={isPushed} isActive={isActive}>
+          {label}
+        </LinkLabel>
+        {isOpen ? (
+          <ArrowDropUpIcon
+            fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray}
+            color={isActive ? theme.colors.lightGreen : theme.colors.lightGray}
+          />
+        ) : (
+          <ArrowDropDownIcon
+            fill={isActive ? theme.colors.lightGreen : theme.colors.lightGray}
+            color={isActive ? theme.colors.lightGreen : theme.colors.lightGray}
+          />
+        )}
       </MenuEntry>
       <AccordionContent
         isOpen={isOpen}

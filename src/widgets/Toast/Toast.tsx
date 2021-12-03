@@ -30,7 +30,19 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
   const timer = useRef<number>()
   const ref = useRef(null)
   const removeHandler = useRef(onRemove)
-  const { id, title, description, type, action, toastBackground, alertBackground, alwaysShow, toastIcon, toastBorder, onClick } = toast
+  const {
+    id,
+    title,
+    description,
+    type,
+    action,
+    toastBackground,
+    alertBackground,
+    alwaysShow,
+    toastIcon,
+    toastBorder,
+    onClick,
+  } = toast
   const handleRemove = useCallback(() => removeHandler.current(id), [id, removeHandler])
 
   const handleMouseEnter = () => {
@@ -62,7 +74,7 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
     return () => {
       clearTimeout(timer.current)
     }
-  }, [timer, ttl, handleRemove])
+  }, [timer, ttl, handleRemove, alwaysShow])
 
   return (
     <CSSTransition nodeRef={ref} timeout={250} style={style} {...props}>
@@ -71,9 +83,9 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
           title={title}
           variant={alertTypeMap[type]}
           onClick={() => {
-            handleRemove();
+            handleRemove()
             if (onClick) {
-              onClick();
+              onClick()
             }
           }}
           toastBackground={toastBackground}
@@ -87,12 +99,14 @@ const Toast: React.FC<ToastProps> = ({ toast, onRemove, style, ttl, ...props }) 
             </Text>
           )}
           {action && (
-            <ToastAction action={action} onClick={() => {
-              handleRemove();
-              if (onClick) {
-                onClick();
-              }
-            }}
+            <ToastAction
+              action={action}
+              onClick={() => {
+                handleRemove()
+                if (onClick) {
+                  onClick()
+                }
+              }}
             />
           )}
         </Alert>

@@ -20,13 +20,13 @@ interface Props {
 
 const AddressBox = styled(Flex)`
   padding: 8px;
-  background: #F2F4F5;
+  background: #f2f4f5;
   border-radius: 8px;
 `
 
 const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null, balances = [], kycInfo }) => {
   const walletID = window.localStorage.getItem(walletLocalStorageKey)
-  const wallet = connectors.find(connector => connector.walletID === walletID)
+  const wallet = connectors.find((connector) => connector.walletID === walletID)
   const Icon = wallet?.icon
 
   return (
@@ -46,32 +46,28 @@ const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null
           View on BscScan
         </LinkExternal>
       </Flex>
-      {
-        kycInfo && <Flex marginY="8px">
+      {kycInfo && (
+        <Flex marginY="8px">
           <KYCOpen kycInfo={kycInfo} />
         </Flex>
-      }
-      {
-        balances.length > 0 && <>
-          <Text
-            fontSize="16px"
-            bold
-          >
+      )}
+      {balances.length > 0 && (
+        <>
+          <Text fontSize="16px" bold>
             Balance
           </Text>
-          {balances.map(balance => {
-            return (<Flex alignItems="center" marginTop="24px">
-              <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
-              <Text
-                fontSize="16px"
-                marginLeft="8px"
-              >
-                {balance.balance} {balance.symbol.toUpperCase()}
-              </Text>
-            </Flex>)
+          {balances.map((balance) => {
+            return (
+              <Flex alignItems="center" marginTop="24px">
+                <img width="28px" alt={balance.symbol} src={balance.iconSrc} />
+                <Text fontSize="16px" marginLeft="8px">
+                  {balance.balance} {balance.symbol.toUpperCase()}
+                </Text>
+              </Flex>
+            )
           })}
         </>
-      }
+      )}
       <Flex justifyContent="center">
         <Button
           scale="sm"

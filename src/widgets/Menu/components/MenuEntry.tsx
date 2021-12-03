@@ -18,7 +18,7 @@ const rainbowAnimation = keyframes`
   }
 `
 
-const LinkLabel = styled.div<{ isPushed: boolean, isActive: boolean }>`
+const LinkLabel = styled.div<{ isPushed: boolean; isActive: boolean }>`
   color: ${({ isActive, theme }) => (isActive ? theme.colors.lightGreen : theme.colors.lightGray)};
   transition: color 0.4s;
   flex-grow: 1;
@@ -59,6 +59,9 @@ MenuEntry.defaultProps = {
   role: 'button',
 }
 
-const LinkLabelMemo = React.memo(LinkLabel, (prev, next) => prev.isPushed === next.isPushed && prev.isActive === next.isActive)
+const LinkLabelMemo = React.memo(
+  LinkLabel,
+  (prev, next) => prev.isPushed === next.isPushed && prev.isActive === next.isActive,
+)
 
 export { MenuEntry, LinkLabelMemo as LinkLabel }

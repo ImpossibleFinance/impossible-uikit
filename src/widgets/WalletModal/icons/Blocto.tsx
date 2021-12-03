@@ -1,22 +1,8 @@
-import React from "react";
-import Svg from "../../../components/Svg/Svg";
-import { SvgProps } from "../../../components/Svg/types";
+import React from 'react'
+import Svg from '../../../components/Svg/Svg'
+import { SvgProps } from '../../../components/Svg/types'
 
-const css = `
-  .cls-1{
-      fill:#afd8f7;
-  }
-  .cls-1,.cls-2,.cls-3{
-      fill-rule:evenodd;
-  }
-  .cls-2{
-      fill:#182a71;
-  }
-  .cls-3{
-      fill:#3485c4;
-  }
-`;
-const Icon: React.FC<SvgProps> = (props) => {
+const Icon: React.FC<SvgProps> = () => {
   return (
     <Svg id="圖層_1" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 62.03">
       <path
@@ -40,7 +26,7 @@ const Icon: React.FC<SvgProps> = (props) => {
         fill="#3485c4"
       />
     </Svg>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon
