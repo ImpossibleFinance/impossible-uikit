@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-// @ts-ignore  
+// @ts-ignore
 import { Player } from '@lottiefiles/react-lottie-player'
 import Loading from './loading.json'
 import { SpinnerProps } from './types'

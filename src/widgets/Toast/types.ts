@@ -26,7 +26,7 @@ export interface Toast {
   toastBorder?: string
   alwaysShow?: boolean
   icon?: string
-  onClick?: Function
+  onClick?: () => void
 }
 
 export interface ToastContainerProps {

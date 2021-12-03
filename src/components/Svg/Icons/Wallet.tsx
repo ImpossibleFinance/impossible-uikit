@@ -1,6 +1,6 @@
-import React from "react";
-import Svg from "../Svg";
-import { SvgProps } from "../types";
+import React from 'react'
+import Svg from '../Svg'
+import { SvgProps } from '../types'
 
 const Icon: React.FC<SvgProps> = () => {
   return (
@@ -22,7 +22,7 @@ const Icon: React.FC<SvgProps> = () => {
         fill="#0074FF"
       />
     </Svg>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

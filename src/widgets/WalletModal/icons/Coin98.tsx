@@ -1,6 +1,6 @@
-import React from "react";
-import Svg from "../../../components/Svg/Svg";
-import { SvgProps } from "../../../components/Svg/types";
+import React from 'react'
+import Svg from '../../../components/Svg/Svg'
+import { SvgProps } from '../../../components/Svg/types'
 
 const css = `
   .cls-1{
@@ -9,7 +9,7 @@ const css = `
   .cls-2{
     fill:#252525;
   }
-`;
+`
 const Icon: React.FC<SvgProps> = (props) => {
   return (
     <Svg
@@ -40,7 +40,7 @@ const Icon: React.FC<SvgProps> = (props) => {
       <path className="cls-2" d="M24.34,26.5V24.88H22.68V26.5a2.38,2.38,0,1,0,1.66,0Z" />
       <path className="cls-2" d="M48.94,41.57a2.38,2.38,0,1,0-3.21,2.22v1.62h1.66V43.79A2.38,2.38,0,0,0,48.94,41.57Z" />
     </Svg>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

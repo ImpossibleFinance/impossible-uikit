@@ -31,8 +31,8 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
-  icon: string;
-  items: MenuSubEntry[];
+  icon: string
+  items: MenuSubEntry[]
   isSidebar?: boolean
   isNewTab?: boolean
   isNew?: boolean
@@ -66,5 +66,5 @@ export interface NavProps extends PanelProps {
   networks?: Network[]
   kycInfo?: KycInfo
   isNetworkUnavailable?: boolean
-  showNetworks?: boolean,
+  showNetworks?: boolean
 }

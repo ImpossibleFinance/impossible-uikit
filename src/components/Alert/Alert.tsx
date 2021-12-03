@@ -7,7 +7,6 @@ import InfoIcon from '../Svg/Icons/Info'
 import IFIcon from '../Svg/Icons/IF'
 import { Text } from '../Text'
 import { IconButton } from '../Button'
-import { Image } from '../Image'
 import { CloseIcon } from '../Svg'
 import Flex from '../Box/Flex'
 import { AlertProps, variants } from './types'
@@ -58,11 +57,12 @@ const IconLabel = styled.div<ThemedIconLabel>`
 `
 
 const withHandlerSpacing = 32 + 12 + 8 // button size + inner spacing + handler position
-const Details = styled.div<{ hasHandler: boolean, variant?: string }>`
+const Details = styled.div<{ hasHandler: boolean; variant?: string }>`
   flex: 1;
   padding-bottom: 12px;
   padding-left: ${({ variant }) => (variant === variants.ANNOUNCEMENT ? `0` : '12px')};
-  padding-right: ${({ hasHandler, variant }) => (hasHandler ? `${variant === variants.ANNOUNCEMENT ? withHandlerSpacing - 12 : withHandlerSpacing}px` : '12px')};
+  padding-right: ${({ hasHandler, variant }) =>
+    hasHandler ? `${variant === variants.ANNOUNCEMENT ? withHandlerSpacing - 12 : withHandlerSpacing}px` : '12px'};
   padding-top: 12px;
 `
 
@@ -73,31 +73,39 @@ const CloseHandler = styled.div`
   top: 8px;
 `
 
-const StyledAlert = styled(Flex) <{ toastBackground?: string, toastBorder?: string }>`
+const StyledAlert = styled(Flex)<{ toastBackground?: string; toastBorder?: string }>`
   position: relative;
   background-color: ${({ theme }) => theme.alert.background};
   background: ${({ toastBackground }) => toastBackground};
   background-size: cover;
   background-position: center;
   border-radius: 16px;
-  border: 1px solid ${({ toastBorder }) => toastBorder && toastBorder.length > 0 ? toastBorder : 'none'};
+  border: 1px solid ${({ toastBorder }) => (toastBorder && toastBorder.length > 0 ? toastBorder : 'none')};
   box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `
 
-const Alert: React.FC<AlertProps> = ({ title, children, variant, onClick, toastBackground, toastIcon, toastBorder }) => {
+const Alert: React.FC<AlertProps> = ({
+  title,
+  children,
+  variant,
+  onClick,
+  toastBackground,
+  toastIcon,
+  toastBorder,
+}) => {
   const Icon = getIcon(variant)
 
   return (
     <StyledAlert toastBackground={toastBackground} toastBorder={toastBorder}>
-      {toastIcon ?
+      {toastIcon ? (
         <Flex justifyContent="center" alignItems="center" paddingLeft="8px" paddingY="8px">
           <img src={toastIcon} alt="toastIcon" width="100%" style={{ height: 36 }} />
         </Flex>
-        :
+      ) : (
         <IconLabel variant={variant} hasDescription={!!children}>
           <Icon color="currentColor" width="24px" />
         </IconLabel>
-      }
+      )}
 
       <Details hasHandler={!!onClick} variant={variant}>
         {typeof title === 'string' ? <Text bold>{title}</Text> : title}

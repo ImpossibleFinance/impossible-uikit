@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface Props {
-  onClose: Function
+  onClose: () => void
   menuVisibility: boolean
 }
 
@@ -16,13 +16,12 @@ const Container = styled.div`
 const FlyoutMenu = styled.div`
   width: 70vw;
   height: 100vh;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: fixed;
   top: 0;
   padding: 16px;
   right: 0;
-  transition: transform .3s
-              cubic-bezier(0, .52, 0, 1);
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   overflow: scroll;
   z-index: 1001;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.33);
@@ -33,7 +32,6 @@ const FlyoutMenu = styled.div`
   &.hide {
     transform: translate3d(100vw, 0, 0);
   }
-
 `
 
 const CloseContainer = styled.div`
@@ -60,7 +58,7 @@ const CloseIcon = styled.div`
     background-color: #333;
     transform: rotate(-45deg);
   }
-  &:before{
+  &:before {
     position: absolute;
     left: 15px;
     content: ' ';
@@ -71,16 +69,13 @@ const CloseIcon = styled.div`
   }
 `
 
-
-const SidebarMenu: React.FC<Props> = ({
-  onClose,
-  children,
-  menuVisibility,
-}) => {
+const SidebarMenu: React.FC<Props> = ({ onClose, children, menuVisibility }) => {
   return (
     <Container>
       <FlyoutMenu className={menuVisibility ? 'show' : 'hide'}>
-        <CloseContainer onClick={() => onClose()}><CloseIcon /></CloseContainer>
+        <CloseContainer onClick={() => onClose()}>
+          <CloseIcon />
+        </CloseContainer>
         {children}
       </FlyoutMenu>
     </Container>
@@ -88,4 +83,3 @@ const SidebarMenu: React.FC<Props> = ({
 }
 
 export default SidebarMenu
-

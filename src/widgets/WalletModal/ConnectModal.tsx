@@ -30,10 +30,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null }) => (
         mb={index < config.length - 1 ? '8px' : '0'}
       />
     ))}
-    <HelpLink
-      href="https://impossible.freshdesk.com/en/support/solutions/folders/80000447667"
-      external
-    >
+    <HelpLink href="https://impossible.freshdesk.com/en/support/solutions/folders/80000447667" external>
       <HelpIcon color="primary" mr="6px" />
       Learn how to connect
     </HelpLink>

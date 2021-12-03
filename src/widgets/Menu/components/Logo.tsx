@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { LogoIcon } from '../../../components/Svg'
 import Flex from '../../../components/Box/Flex'
-import { HamburgerIcon, HamburgerCloseIcon } from "../icons";
-import MenuButton from "./MenuButton";
+import { HamburgerIcon, HamburgerCloseIcon } from '../icons'
+import MenuButton from './MenuButton'
 
 interface Props {
   isPushed: boolean
@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   justify-content: flex-end;
 `
 
-const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
+const Logo: React.FC<Props> = ({ isPushed, togglePush, href }) => {
   const isAbsoluteUrl = href.startsWith('http')
   const innerLogo = (
     <>

@@ -1,28 +1,35 @@
-import React from "react";
-import styled from "styled-components";
-import MenuLink from "./components/MenuLink";
+import React from 'react'
+import styled from 'styled-components'
+import MenuLink from './components/MenuLink'
 
 type NavProps = {
-  href?: string;
-  text: string;
-  isActive?: boolean;
-  isNewTab?: boolean;
-  onClick?: Function;
-};
+  href?: string
+  text: string
+  isActive?: boolean
+  isNewTab?: boolean
+  onClick?: () => void
+}
 
 const Nav: React.FC<NavProps> = ({ href, text, isActive, onClick, isNewTab }) => {
   return (
     <StyledNav>
-      <StyledLink className={isActive ? "active" : ""}>
-        <MenuLink onClick={() => {
-          if (onClick) {
-            onClick()
-          }
-        }} href={href} target={isNewTab ? "_blank" : ''} rel={isNewTab ? "noopener noreferrer" : ''}>{text}</MenuLink>
+      <StyledLink className={isActive ? 'active' : ''}>
+        <MenuLink
+          onClick={() => {
+            if (onClick) {
+              onClick()
+            }
+          }}
+          href={href}
+          target={isNewTab ? '_blank' : ''}
+          rel={isNewTab ? 'noopener noreferrer' : ''}
+        >
+          {text}
+        </MenuLink>
       </StyledLink>
     </StyledNav>
-  );
-};
+  )
+}
 
 const StyledNav = styled.nav`
   align-items: center;
@@ -30,7 +37,7 @@ const StyledNav = styled.nav`
   line-height: 45px;
   font-weight: 500;
   margin: 0 5px;
-`;
+`
 
 const StyledLink = styled.div`
   & a {
@@ -58,6 +65,6 @@ const StyledLink = styled.div`
     border-radius: 16px;
     font-weight: 700;
   }
-`;
+`
 
-export default Nav;
+export default Nav

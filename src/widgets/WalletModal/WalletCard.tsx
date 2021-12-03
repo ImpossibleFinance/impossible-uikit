@@ -20,7 +20,7 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss, mb }) => 
       onClick={() => {
         login(walletConfig.connectorId)
         if (window.fathom) {
-          window.fathom.trackGoal(walletConfig.fathomID, 0);
+          window.fathom.trackGoal(walletConfig.fathomID, 0)
         }
         window.localStorage.setItem(connectorLocalStorageKey, walletConfig.connectorId)
         window.localStorage.setItem(walletLocalStorageKey, walletConfig.walletID || '')

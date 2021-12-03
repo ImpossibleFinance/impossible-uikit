@@ -77,7 +77,6 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
-
 `
 
 export default StyledButton
