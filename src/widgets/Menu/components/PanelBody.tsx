@@ -2,7 +2,6 @@ import React from "react";
 import styled, { useTheme } from "styled-components";
 import { useLocation } from "react-router-dom";
 import { SvgProps } from "../../../components/Svg";
-import { Button } from "../../../components/Button";
 import * as IconModule from "../icons";
 import Accordion from "./Accordion";
 import { MenuEntry, LinkLabel } from "./MenuEntry";

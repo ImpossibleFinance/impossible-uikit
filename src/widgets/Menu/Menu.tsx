@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import throttle from "lodash/throttle";
-import { useLocation } from "react-router";
 import Flex from "../../components/Box/Flex";
 import { useMatchBreakpoints } from "../../hooks";
 import UserBlock from "./components/UserBlock";
